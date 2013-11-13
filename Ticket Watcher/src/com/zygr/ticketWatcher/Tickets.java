@@ -17,12 +17,8 @@ public class Tickets extends Object{
 		public final int INDEX_OWNER = 8;
 		public final int INDEX_ESCALATIONTIME = 10;
 		
-		
-		
 	//Constructor
-		
 	public Tickets(){
-		
 	}
 	//Sets
 	public void setAll(int index, String pString){
@@ -43,9 +39,7 @@ public class Tickets extends Object{
 		case INDEX_ESCALATIONTIME: setEscalationTime(pString);
 		break;
 		default: break;
-		
 		}
-		
 	}
 	public void setTicketNumber(String pticketNumber){
 		

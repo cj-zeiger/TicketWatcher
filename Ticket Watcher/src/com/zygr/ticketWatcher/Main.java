@@ -12,24 +12,14 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class RunnableCore {
+public class Main {
 	public final static String CJ_NAME = "carl.zeiger";	
 	public static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
 	public static List<Tickets> ticketHolder = new ArrayList<Tickets>();
 	
 	public static void main(String[] args) {
-		//createUi();
-		//loadUi();
-		//updateUi();
-		//parseData();
-		//debugListener();
 		loadData();
-		
 	}
-
-	private static void parseData() {
-	}
-
 	private static void updateUi() {
 		int numberOfTickets = ticketHolder.size();
 		while (numberOfTickets > 0){
@@ -37,10 +27,9 @@ public class RunnableCore {
 			numberOfTickets--;
 		}
 	}
-
 	@SuppressWarnings("null")
-	private static void loadData() {
-		
+	private static void loadData() 
+	{
 		try {
 			//Document tickets = Jsoup.connect(URL_NETCARRIER_TICKET).get();
 			File input = new File("C:/nctickets.html");
@@ -56,35 +45,12 @@ public class RunnableCore {
 					colIndex++;
 				}
 				ticketHolder.add(holderTicket);
-				
 			}
-			
-			
-			
-			
-			
-		
-			
-		} catch (IOException e) {
-	
-		}
+			} catch (IOException e) {
+			}
 		updateUi();
-	
-		
-		
-	}
-
-	private static void loadUi() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private static void createUi() {
-		
-		
 	}
 	private static void print(String msg, Object... args) {
         System.out.println(String.format(msg, args));
     }
-
 }
