@@ -1,0 +1,4773 @@
+
+<!-- saved from url=(0031)http://tickets/tickets/view.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript">
+
+ 
+  function RunValidation(){
+  
+    //if(this.options[this.selectedIndex].text=='CDR' || this.options[this.selectedIndex].text=='Debug'){IsPublic.checked=false}else{IsPublic.checked=true}
+	/*if(document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text=='CDR' || document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text=='Debug')
+		{document.getElementById('IsPublic').checked=false;}
+	else
+		{document.getElementById('IsPublic').checked=true;}
+		*/
+		
+    if(document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text=='(Make a Selection)')
+		{
+			alert("Please select a subject.");
+			return false;
+		}
+	else
+		{
+			return true;
+		}
+	
+  }
+  </script>
+<meta http-equiv="refresh" content="300">
+ <meta http-equiv="refresh" content="300">
+	
+	<title>NetCarrier Trouble Tickets</title>
+ <style type="text/css">
+
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	
+}
+a.nav:link {color: #E5E5E5; text-decoration: none; }
+a.nav:visited {color: #E5E5E5; text-decoration: none; }
+a.nav:hover {color: #9C0; text-decoration: none; }
+a.nav:active {color: #E5E5E5; }
+body {
+	background-image: url(images/background.png);
+	background-repeat: repeat-x;
+	background-color: #D1D1D1;
+	margin-left: 10px;
+	margin-top: 0px;
+}
+#nBG {
+	position:absolute;
+	right:0;
+	top:73px;
+	width:328px;
+	height:324px;
+	z-index:1;
+	overflow:hidden;
+}
+#rightNav {
+	position:absolute;
+	right:0;
+	top:10px;
+	width:365px;
+	height:42px;
+	z-index:2;
+}
+#leftNav {
+	position:absolute;
+	left:0px;
+	top:73px;
+	width:347px;
+	height:34px;
+	z-index:2;
+}
+#content {
+	position:absolute;
+	left:17px;
+	top:125px;
+	width:auto;
+	height:313px;
+	z-index:3;
+}
+#bottom {
+	position:absolute;
+	left:15px;
+	bottom:0px;
+	width:452px;
+	height:28px;
+	z-index:2;
+}
+</style>
+<style type="text/css"></style></head>
+
+<body>
+<img src="./NetCarrier Trouble Tickets_files/logo.png" width="214" height="41">
+<div id="rightNav" align="right">
+	<a href="http://techweb.netcarrier.net/"><img src="./NetCarrier Trouble Tickets_files/top_nagios.png" width="81" height="46" border="0"></a>&nbsp;&nbsp;
+	<a href="http://cricket.netcarrier.net/"><img src="./NetCarrier Trouble Tickets_files/top_cricket.png" width="81" height="46" border="0"></a>&nbsp;&nbsp;
+	<a href="http://192.168.2.29:9500/ISMserver"><img src="./NetCarrier Trouble Tickets_files/top_netcool.png" width="81" height="46" border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
+
+<div id="leftNav">
+	<a href="http://tickets/tickets/create.asp" onmouseover="document.create.src=&#39;images/topnav/createticket_o.jpg&#39;;" onmouseout="document.create.src=&#39;images/topnav/createticket.jpg&#39;;"><img src="./NetCarrier Trouble Tickets_files/createticket.jpg" width="97" height="41" border="0" name="create"></a>
+	<a href="./NetCarrier Trouble Tickets_files/NetCarrier Trouble Tickets.htm" onmouseover="document.view.src=&#39;images/topnav/viewtickets_o.jpg&#39;;" onmouseout="document.view.src=&#39;images/topnav/viewtickets.jpg&#39;;"><img src="./NetCarrier Trouble Tickets_files/viewtickets.jpg" width="85" height="41" border="0" name="view"></a>
+	<a href="http://tickets/tickets/search.asp" onmouseover="document.search.src=&#39;images/topnav/searchtickets_o.jpg&#39;;" onmouseout="document.search.src=&#39;images/topnav/searchtickets.jpg&#39;;"><img src="./NetCarrier Trouble Tickets_files/searchtickets.jpg" width="101" height="41" border="0" name="search"></a>
+</div>
+
+<div id="nBG"><img src="./NetCarrier Trouble Tickets_files/bign.png" width="328" height="324"></div>
+
+<div id="content">
+  
+<!-- <base href="http://support/tickets/" target="_self"> -->
+<form method="POST" action="./NetCarrier Trouble Tickets_files/NetCarrier Trouble Tickets.htm">
+<center><table width="95%"><tbody><tr style="font-family:Arial, Helvetica, sans-serif; font-size:12px;">
+
+
+<input type="hidden" name="lastsort" value="priority">
+<input type="hidden" name="lastlastsort" value="">
+<!--<td align=left>
+<input type="checkbox" name="closed" value="True" > Show Closed Tickets</td><td align=center></td> -->
+	
+<td align="right">Change Group: <select size="1" name="newgroup">
+
+
+  				<option selected="" value="1">CallCenter</option>
+ 				 
+  				<option value="2">Network Operations</option>
+ 				 
+  				<option value="3">Network Engineering</option>
+ 				 
+  				<option value="4">Provision</option>
+ 				 
+  				<option value="5">Software Development</option>
+ 				 
+  				<option value="6">Sales</option>
+ 				 
+  				<option value="7">Facilities</option>
+ 				 
+  				<option value="8">Global</option>
+ 				 
+  				<option value="9">Voice Engineering</option>
+ 				 
+  				<option value="10">Dispatch</option>
+ 				 
+  				<option value="11">Hosted PBX</option>
+ 				 <option value="X">All groups</option> 
+	
+	</select>
+	<input type="submit" name="sort" value="Go">&nbsp;</td></tr>
+	</tbody></table></center>
+
+<table border="0" style="boder-style:solid;margin-left:2%;width:95%" bgcolor="cccccc" cellpadding="0" cellspacing="2">	<thead>
+		<tr class="headrow" bgcolor="99cc66">
+		<td><center><input src="./NetCarrier Trouble Tickets_files/ticket.jpg" type="image" name="ticket" value="Ticket" onmouseover="document.ticketu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.ticketu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="ticketu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/status.jpg" type="image" name="status" value="Status" onmouseover="document.statusu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.statusu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="statusu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/priority.jpg" type="image" name="priority" value="Priority" onmouseover="document.priorityu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.priorityu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="priorityu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/customer.jpg" type="image" name="customer" value="Customer #" onmouseover="document.customeru.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.customeru.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="customeru"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/account.jpg" type="image" name="account" value="Account #" onmouseover="document.accountu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.accountu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="accountu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/subject.jpg" type="image" name="subject" value="Subject" onmouseover="document.subjectu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.subjectu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="subjectu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/lastaction.jpg" type="image" name="lastaction" value="Last Action" onmouseover="document.lastactionu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.lastactionu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="lastactionu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/created.jpg" type="image" name="created" value="Created" onmouseover="document.createdu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.createdu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="createdu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/owner.jpg" type="image" name="owner" value="Owner" onmouseover="document.owneru.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.owneru.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="owneru"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/group.jpg" type="image" name="Group" value="Group" onmouseover="document.groupu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.groupu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="groupu"></center></td>
+		<td><center><input src="./NetCarrier Trouble Tickets_files/escalation.jpg" type="image" name="escalation" value="escalation" onmouseover="document.escalationu.src=&#39;images/filled_u.gif&#39;;" onmouseout="document.escalationu.src=&#39;images/blank_u.gif&#39;;"><br><img src="./NetCarrier Trouble Tickets_files/blank_u.gif" name="escalationu"></center></td>
+		
+	</tr>
+<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51370">AS51370 </a><br><a href="http://orders/AccountInfo.aspx?aid=62652"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="FFA07A">
+		
+		Major&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32339" target="_blank">32339</a>
+		<br><font size="2">First Savings Bank of Perkasie</font>&nbsp;</td>
+		
+		
+		<td align="center">62652
+		
+		<br><i>Milford Square</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 9:17:18 AM&nbsp;</td>
+		<td>11/22/2013 4:59:24 PM&nbsp;</td>
+		<td align="center">carl.zeiger&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			14h 22m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51375">HP51375 </a><br><a href="http://orders/AccountInfo.aspx?aid="><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35156" target="_blank">35156</a>
+		<br><font size="2">Harvest Community Bank</font>&nbsp;</td>
+		
+		
+		<td align="center">
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Registration Issue
+        
+        </td>
+		<td>11/22/2013 8:41:10 PM&nbsp;</td>
+		<td>11/22/2013 7:12:49 PM&nbsp;</td>
+		<td align="center">carl.zeiger&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			1h 46m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50703">HP50703 </a><br><a href="http://orders/AccountInfo.aspx?aid=49187"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49187<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>DAYLESFORD - 1440 Russell Rd</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          ACD
+        
+        </td>
+		<td>11/23/2013 7:04:33 AM&nbsp;</td>
+		<td>11/5/2013 2:31:47 PM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Network Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 9m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51359">AS51359 </a><br><a href="http://orders/AccountInfo.aspx?aid=47983"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31632" target="_blank">31632</a>
+		<br><font size="2">Celldex Therapeutics/Avant</font>&nbsp;</td>
+		
+		
+		<td align="center">47983
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 7:04:07 AM&nbsp;</td>
+		<td>11/22/2013 1:31:17 PM&nbsp;</td>
+		<td align="center">kevin.johnson&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 9m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=49226">AS49226 </a><br><a href="http://orders/AccountInfo.aspx?aid=53456"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35395" target="_blank">35395</a>
+		<br><font size="2">Clarke Caton Hintz PC</font>&nbsp;</td>
+		
+		
+		<td align="center">53456
+		
+		<br><i>BILL AD ISDN PRI 100 Barracks St., Trenton, NJ CALL GEORGE IMMEDIATELY WHEN AN OUTAGE OCCURS. 609-477-6833</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Alarm
+        
+        </td>
+		<td>11/23/2013 7:03:31 AM&nbsp;</td>
+		<td>9/19/2013 11:53:02 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 8m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50584">AS50584 </a><br><a href="http://orders/AccountInfo.aspx?aid=53329"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35310" target="_blank">35310</a>
+		<br><font size="2">Swanson Hardware</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">53329<br><i>Sensitive Due To: Voice/Data Issues</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Alarm
+        
+        </td>
+		<td>11/23/2013 7:02:50 AM&nbsp;</td>
+		<td>11/1/2013 2:05:35 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 7m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51237">D51237 </a><br><a href="http://orders/AccountInfo.aspx?aid=65033"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40268" target="_blank">40268</a>
+		<br><font size="2">Academic Urology</font>&nbsp;</td>
+		
+		
+		<td align="center">65033
+		
+		<br><i>Pottstown</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Latency Issues
+        
+        </td>
+		<td>11/23/2013 6:51:41 AM&nbsp;</td>
+		<td>11/19/2013 4:38:17 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			11h 56m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50837">V50837 </a><br><a href="http://orders/AccountInfo.aspx?aid=62485"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38986" target="_blank">38986</a>
+		<br><font size="2">Accredited Investigations, Inc.</font>&nbsp;</td>
+		
+		
+		<td align="center">62485
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          E-Fax issue
+        
+        </td>
+		<td>11/22/2013 11:23:09 AM&nbsp;</td>
+		<td>11/7/2013 1:36:24 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc1.png" alt="Escalation Level 1">&nbsp;<br>
+			-15h -32m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50951">V50951 </a><br><a href="http://orders/AccountInfo.aspx?aid=65181"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40318" target="_blank">40318</a>
+		<br><font size="2">Pediatric Center, LLC</font>&nbsp;</td>
+		
+		
+		<td align="center">65181
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Outbound Call Failure
+        
+        </td>
+		<td>11/22/2013 2:38:17 PM&nbsp;</td>
+		<td>11/11/2013 4:19:55 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc1.png" alt="Escalation Level 1">&nbsp;<br>
+			-12h -17m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51121">V51121 </a><br><a href="http://orders/AccountInfo.aspx?aid=49435"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32171" target="_blank">32171</a>
+		<br><font size="2">Klein Hersh International</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49435<br><i>Sensitive Due To: Circuit Issues</i>&nbsp;
+		
+		<br><i>*CHRONIC*  outbound call failure</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Call Routing Issue
+        
+        </td>
+		<td>11/22/2013 5:14:43 PM&nbsp;</td>
+		<td>11/15/2013 11:57:36 AM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc1.png" alt="Escalation Level 1">&nbsp;<br>
+			-9h -41m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51379">HP51379 </a><br><a href="http://orders/AccountInfo.aspx?aid=64683"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40170" target="_blank">40170</a>
+		<br><font size="2">The Malvern School</font>&nbsp;</td>
+		
+		
+		<td align="center">64683
+		
+		<br><i>West Norriton 10</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Registration Issue
+        
+        </td>
+		<td>11/23/2013 7:34:16 AM&nbsp;</td>
+		<td>11/22/2013 8:31:50 PM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			12h 39m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51338">D51338 </a><br><a href="http://orders/AccountInfo.aspx?aid=65274"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34894" target="_blank">34894</a>
+		&nbsp;</td>
+		
+		
+		<td align="center">65274
+		
+		<br><i>BILLED IN ACCNT: 52790</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 10:53:21 AM&nbsp;</td>
+		<td>11/22/2013 9:14:57 AM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			7h 58m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51242">AS51242 </a><br><a href="http://orders/AccountInfo.aspx?aid=52660"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34774" target="_blank">34774</a>
+		<br><font size="2">Geri Care, Inc.</font>&nbsp;</td>
+		
+		
+		<td align="center">52660
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Alarm
+        
+        </td>
+		<td>11/23/2013 7:01:28 AM&nbsp;</td>
+		<td>11/20/2013 4:51:06 AM&nbsp;</td>
+		<td align="center">brian.behmke&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 6m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51328">HP51328 </a><br><a href="http://orders/AccountInfo.aspx?aid=61689"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38841" target="_blank">38841</a>
+		<br><font size="2">Montgomeryville Cycle Center</font>&nbsp;</td>
+		
+		
+		<td align="center">61689
+		
+		<br><i>1.54MB - Atlantic City</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Registration Issue
+        
+        </td>
+		<td>11/22/2013 2:52:14 PM&nbsp;</td>
+		<td>11/22/2013 1:20:24 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc1.png" alt="Escalation Level 1">&nbsp;<br>
+			-4h -3m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51345">V51345 </a><br><a href="http://orders/AccountInfo.aspx?aid=48966"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31975" target="_blank">31975</a>
+		<br><font size="2">Sheller, P.C.</font>&nbsp;</td>
+		
+		
+		<td align="center">48966
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Outbound Call Failure
+        
+        </td>
+		<td>11/22/2013 1:18:35 PM&nbsp;</td>
+		<td>11/22/2013 10:28:29 AM&nbsp;</td>
+		<td align="center">chance.carr&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc1.png" alt="Escalation Level 1">&nbsp;<br>
+			-13h -37m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51333">V51333 </a><br><a href="http://orders/AccountInfo.aspx?aid=48131"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31697" target="_blank">31697</a>
+		<br><font size="2">Chalfont Family Practice</font>&nbsp;</td>
+		
+		
+		<td align="center">48131
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 7:02:08 AM&nbsp;</td>
+		<td>11/22/2013 7:51:07 AM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 7m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51309">AS51309 </a><br><a href="http://orders/AccountInfo.aspx?aid=53922"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35554" target="_blank">35554</a>
+		<br><font size="2">Glastron Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">53922
+		
+		<br><i>Techglass - 1717 Gallagher Dr</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          slow internet
+        
+        </td>
+		<td>11/22/2013 11:34:29 PM&nbsp;</td>
+		<td>11/21/2013 12:58:35 PM&nbsp;</td>
+		<td align="center">joshua.buss&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 39m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51326">AS51326 </a><br><a href="http://orders/AccountInfo.aspx?aid=53299"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35290" target="_blank">35290</a>
+		<br><font size="2">Arcuri Agency Inc.</font>&nbsp;</td>
+		
+		
+		<td align="center">53299
+		
+		<br><i>Bill as Voice Analog - 18 lines</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 7:00:05 AM&nbsp;</td>
+		<td>11/21/2013 5:43:18 PM&nbsp;</td>
+		<td align="center">joshua.buss&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 5m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51330">AS51330 </a><br><a href="http://orders/AccountInfo.aspx?aid=49769"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Monitoring&nbsp;</td>
+		<td align="center" bgcolor="FFE4B5">
+		
+		Moderate&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32248" target="_blank">32248</a>
+		<br><font size="2">Retail Logistics LLC</font>&nbsp;</td>
+		
+		
+		<td align="center">49769
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Bouncing
+        
+        </td>
+		<td>11/23/2013 6:59:06 AM&nbsp;</td>
+		<td>11/22/2013 5:53:52 AM&nbsp;</td>
+		<td align="center">joshua.buss&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			4h 4m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50994">I50994 </a><br><a href="http://orders/AccountInfo.aspx?aid="><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=11797" target="_blank">11797</a>
+		<br><font size="2">Netcarrier Administrator</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow"><br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Scheduled maintenance calls
+        
+        </td>
+		<td>11/20/2013 8:02:56 PM&nbsp;</td>
+		<td>11/12/2013 4:46:46 PM&nbsp;</td>
+		<td align="center">schneiderd&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			9h 7m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50926">AS50926 </a><br><a href="http://orders/AccountInfo.aspx?aid=63014"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39122" target="_blank">39122</a>
+		<br><font size="2">The Kingstree Group</font>&nbsp;</td>
+		
+		
+		<td align="center">63014
+		
+		<br><i>10Mb Fiberflex included</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 8:22:32 AM&nbsp;</td>
+		<td>11/11/2013 9:33:39 AM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			21h 27m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51337">HP51337 </a><br><a href="http://orders/AccountInfo.aspx?aid=64509"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31001" target="_blank">31001</a>
+		<br><font size="2">Parry Physical Therapy Group</font>&nbsp;</td>
+		
+		
+		<td align="center">64509
+		
+		<br><i>361 S 11th St Quakertown</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          AA change request
+        
+        </td>
+		<td>11/23/2013 9:01:59 AM&nbsp;</td>
+		<td>11/22/2013 9:11:04 AM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			22h 6m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51358">AS51358 </a><br><a href="http://orders/AccountInfo.aspx?aid=48879"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31947" target="_blank">31947</a>
+		<br><font size="2">Bonland Industries, Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">48879
+		
+		<br><i>Fairless Hills "When down call Chris @ 973-694-3211 Ext. 228 And 973-418-7435"</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Bouncing
+        
+        </td>
+		<td>11/23/2013 3:24:04 AM&nbsp;</td>
+		<td>11/22/2013 1:27:38 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			64h 29m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=49018">V49018 </a><br><a href="http://orders/AccountInfo.aspx?aid=48455"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31794" target="_blank">31794</a>
+		<br><font size="2">Catholic Health East APSS</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">48455<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>500 Grove St</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/22/2013 2:27:32 PM&nbsp;</td>
+		<td>9/12/2013 2:37:55 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 32m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=49484">V49484 </a><br><a href="http://orders/AccountInfo.aspx?aid=60437"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38722" target="_blank">38722</a>
+		<br><font size="2">Association Associates</font>&nbsp;</td>
+		
+		
+		<td align="center">60437
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          411 Issues
+        
+        </td>
+		<td>11/22/2013 2:27:52 PM&nbsp;</td>
+		<td>9/30/2013 10:55:41 AM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 32m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50256">V50256 </a><br><a href="http://orders/AccountInfo.aspx?aid=47812"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31095" target="_blank">31095</a>
+		<br><font size="2">TriValley Primary Care</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">47812<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>1532 Park Ave, (NO DATA) Quakertown - **CHRONIC**</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 2:28:54 PM&nbsp;</td>
+		<td>10/22/2013 1:25:07 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 33m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50661">V50661 </a><br><a href="http://orders/AccountInfo.aspx?aid=48954"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31971" target="_blank">31971</a>
+		<br><font size="2">PMA Medical Specialists-Administrative OFFICE</font>&nbsp;</td>
+		
+		
+		<td align="center">48954
+		
+		<br><i>420-Limerick</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 10:47:35 AM&nbsp;</td>
+		<td>11/4/2013 4:38:03 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			47h 52m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50640">V50640 </a><br><a href="http://orders/AccountInfo.aspx?aid=48869"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31941" target="_blank">31941</a>
+		<br><font size="2">Bilt Rite Orthopedics &amp; Safety Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">48869
+		
+		<br><i>Vz FIOs 25/25m</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 4:57:05 PM&nbsp;</td>
+		<td>11/4/2013 11:59:20 AM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 2m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51023">V51023 </a><br><a href="http://orders/AccountInfo.aspx?aid=63033"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39131" target="_blank">39131</a>
+		<br><font size="2">National Janitorial Services</font>&nbsp;</td>
+		
+		
+		<td align="center">63033
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 4:50:51 PM&nbsp;</td>
+		<td>11/13/2013 12:05:00 PM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 55m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51131">V51131 </a><br><a href="http://orders/AccountInfo.aspx?aid=48518"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31817" target="_blank">31817</a>
+		<br><font size="2">Quakertown Borough</font>&nbsp;</td>
+		
+		
+		<td align="center">48518
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Caller ID Issues
+        
+        </td>
+		<td>11/22/2013 4:48:22 PM&nbsp;</td>
+		<td>11/15/2013 2:09:42 PM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 53m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51188">AS51188 </a><br><a href="http://orders/AccountInfo.aspx?aid=47362"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31352" target="_blank">31352</a>
+		<br><font size="2">Beacon Insurance Services</font>&nbsp;</td>
+		
+		
+		<td align="center">47362
+		
+		<br><i>4846841101 DTO 6106873690</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/22/2013 4:47:23 PM&nbsp;</td>
+		<td>11/18/2013 10:00:36 AM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 52m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51235">HP51235 </a><br><a href="http://orders/AccountInfo.aspx?aid=64025"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39222" target="_blank">39222</a>
+		<br><font size="2">Nosaj Disposables</font>&nbsp;</td>
+		
+		
+		<td align="center">64025
+		
+		<br><i>ncpbxnosaj.com</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Customer cannot pick up line
+        
+        </td>
+		<td>11/22/2013 3:45:35 PM&nbsp;</td>
+		<td>11/19/2013 3:54:14 PM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			52h 50m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51307">V51307 </a><br><a href="http://orders/AccountInfo.aspx?aid=64767"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40198" target="_blank">40198</a>
+		<br><font size="2">Future Ford Sales, Inc. dba Sheridan Ford</font>&nbsp;</td>
+		
+		
+		<td align="center">64767
+		
+		<br><i>4001 Kirkwood</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Dropped Calls
+        
+        </td>
+		<td>11/22/2013 4:45:06 PM&nbsp;</td>
+		<td>11/21/2013 12:32:22 PM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 50m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51354">HP51354 </a><br><a href="http://orders/AccountInfo.aspx?aid=65044"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40266" target="_blank">40266</a>
+		<br><font size="2">pcAge Inc.</font>&nbsp;</td>
+		
+		
+		<td align="center">65044
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Hunt Group Issue
+        
+        </td>
+		<td>11/22/2013 7:35:57 PM&nbsp;</td>
+		<td>11/22/2013 11:55:14 AM&nbsp;</td>
+		<td align="center">brandon.schute&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			56h 40m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50007">V50007 </a><br><a href="http://orders/AccountInfo.aspx?aid=61841"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38900" target="_blank">38900</a>
+		<br><font size="2">CARCO</font>&nbsp;</td>
+		
+		
+		<td align="center">61841
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/23/2013 7:12:58 AM&nbsp;</td>
+		<td>10/15/2013 12:20:24 PM&nbsp;</td>
+		<td align="center">joshua.buss&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			68h 17m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51167">E51167 </a><br><a href="http://orders/AccountInfo.aspx?aid=58875"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34993" target="_blank">34993</a>
+		&nbsp;</td>
+		
+		
+		<td align="center">58875
+		
+		<br><i>Imported from Ruby Account Type = Personal I-Mail</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Send/Recieve Issues
+        
+        </td>
+		<td>11/21/2013 4:40:46 PM&nbsp;</td>
+		<td>11/17/2013 9:42:28 PM&nbsp;</td>
+		<td align="center">joshua.buss&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			29h 45m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51335">HP51335 </a><br><a href="http://orders/AccountInfo.aspx?aid=61948"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38932" target="_blank">38932</a>
+		<br><font size="2">General Floor</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">61948<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>Bellmawr - 20Mb Fiberflex  - 190 Benigno Blvd ***SEE MASTER TAB IN THE CLOUD FOR SPECIAL OUTAGE INSTRUCTIONS****</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Unite Disconnects
+        
+        </td>
+		<td>11/22/2013 2:43:05 PM&nbsp;</td>
+		<td>11/22/2013 8:29:39 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 48m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51346">HP51346 </a><br><a href="http://orders/AccountInfo.aspx?aid=65149"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40302" target="_blank">40302</a>
+		<br><font size="2">McDowell Posternock Law</font>&nbsp;</td>
+		
+		
+		<td align="center">65149
+		
+		<br><i>Maple Shade</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Main number receive switch Disconnect
+        
+        </td>
+		<td>11/22/2013 9:06:12 PM&nbsp;</td>
+		<td>11/22/2013 10:32:36 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			58h 11m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51348">HP51348 </a><br><a href="http://orders/AccountInfo.aspx?aid=65149"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40302" target="_blank">40302</a>
+		<br><font size="2">McDowell Posternock Law</font>&nbsp;</td>
+		
+		
+		<td align="center">65149
+		
+		<br><i>Maple Shade</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          BLF Issue
+        
+        </td>
+		<td>11/22/2013 10:12:47 PM&nbsp;</td>
+		<td>11/22/2013 10:36:48 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			59h 17m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50775">HP50775 </a><br><a href="http://orders/AccountInfo.aspx?aid=49187"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49187<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>DAYLESFORD - 1440 Russell Rd</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/22/2013 2:45:55 PM&nbsp;</td>
+		<td>11/6/2013 11:43:44 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 50m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51079">V51079 </a><br><a href="http://orders/AccountInfo.aspx?aid=49187"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49187<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>DAYLESFORD - 1440 Russell Rd</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 2:46:26 PM&nbsp;</td>
+		<td>11/14/2013 11:44:09 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 51m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51108">D51108 </a><br><a href="http://orders/AccountInfo.aspx?aid=52537"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34669" target="_blank">34669</a>
+		<br><font size="2">South Jersey Trans. Auth. Elwood</font>&nbsp;</td>
+		
+		
+		<td align="center">52537
+		
+		<br><i>21 Atlantic City Expressway</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          IP Routing Issue
+        
+        </td>
+		<td>11/22/2013 8:48:58 PM&nbsp;</td>
+		<td>11/15/2013 8:07:11 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			57h 53m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51191">HP51191 </a><br><a href="http://orders/AccountInfo.aspx?aid=64309"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">64309<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>York-45 Wyntre Brook Drive</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          ACD
+        
+        </td>
+		<td>11/22/2013 8:09:04 PM&nbsp;</td>
+		<td>11/18/2013 10:07:58 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			57h 14m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51225">V51225 </a><br><a href="http://orders/AccountInfo.aspx?aid=65209"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">65209<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>Exton - 491 John Young Way</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 4:45:47 PM&nbsp;</td>
+		<td>11/19/2013 11:36:49 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 50m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51292">HP51292 </a><br><a href="http://orders/AccountInfo.aspx?aid=64751"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40190" target="_blank">40190</a>
+		<br><font size="2">NSS of NJ, Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">64751
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Feature Request
+        
+        </td>
+		<td>11/22/2013 2:15:32 PM&nbsp;</td>
+		<td>11/21/2013 8:54:06 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 20m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50458">HP50458 </a><br><a href="http://orders/AccountInfo.aspx?aid=65030"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40264" target="_blank">40264</a>
+		<br><font size="2">Adina Gabriela LLC dba The Closet Works</font>&nbsp;</td>
+		
+		
+		<td align="center">65030
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 5:42:14 PM&nbsp;</td>
+		<td>10/29/2013 6:20:31 PM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Network Operations&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 47m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50686">V50686 </a><br><a href="http://orders/AccountInfo.aspx?aid=64722"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40175" target="_blank">40175</a>
+		<br><font size="2">Allied Dental</font>&nbsp;</td>
+		
+		
+		<td align="center">64722
+		
+		<br><i>Hazlet</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Voice Quality
+        
+        </td>
+		<td>11/23/2013 7:35:18 AM&nbsp;</td>
+		<td>11/5/2013 11:09:06 AM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			68h 40m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50695">HP50695 </a><br><a href="http://orders/AccountInfo.aspx?aid=64697"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40175" target="_blank">40175</a>
+		<br><font size="2">Allied Dental</font>&nbsp;</td>
+		
+		
+		<td align="center">64697
+		
+		<br><i>Bartonville</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 5:17:16 PM&nbsp;</td>
+		<td>11/5/2013 1:09:00 PM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 22m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50881">HP50881 </a><br><a href="http://orders/AccountInfo.aspx?aid=64706"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40175" target="_blank">40175</a>
+		<br><font size="2">Allied Dental</font>&nbsp;</td>
+		
+		
+		<td align="center">64706
+		
+		<br><i>Aldan</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Voice Quality Issue
+        
+        </td>
+		<td>11/23/2013 7:34:52 AM&nbsp;</td>
+		<td>11/8/2013 3:56:16 PM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			68h 39m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51233">AS51233 </a><br><a href="http://orders/AccountInfo.aspx?aid=49625"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=2" target="_blank">2</a>
+		<br><font size="2">POP, Perkasie (Chris Peltier)</font>&nbsp;</td>
+		
+		
+		<td align="center">49625
+		
+		<br><i>NEW BILLING CYCLE:</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/21/2013 11:33:39 AM&nbsp;</td>
+		<td>11/19/2013 3:27:01 PM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			24h 38m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51256">HP51256 </a><br><a href="http://orders/AccountInfo.aspx?aid=64156"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40022" target="_blank">40022</a>
+		<br><font size="2">Kathy McManus Agency Nationwide Insurance</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">64156<br><i>Sensitive Due To: Voice/Data Issues</i>&nbsp;
+		
+		<br><i>FIOS</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issues
+        
+        </td>
+		<td>11/22/2013 6:56:46 PM&nbsp;</td>
+		<td>11/20/2013 10:44:37 AM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			56h 1m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51367">HP51367 </a><br><a href="http://orders/AccountInfo.aspx?aid=49174"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49174<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>PAOLI -219 W Lancaster Ave-Paoli</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issues
+        
+        </td>
+		<td>11/22/2013 9:01:39 PM&nbsp;</td>
+		<td>11/22/2013 4:46:58 PM&nbsp;</td>
+		<td align="center">dustin.geist&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			58h 6m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50364">V50364 </a><br><a href="http://orders/AccountInfo.aspx?aid=64048"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39980" target="_blank">39980</a>
+		<br><font size="2">Martin Honda</font>&nbsp;</td>
+		
+		
+		<td align="center">64048
+		
+		<br><i>Newark DE</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          excessive invalid calls.
+        
+        </td>
+		<td>11/22/2013 5:11:37 PM&nbsp;</td>
+		<td>10/25/2013 3:51:48 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 16m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51055">V51055 </a><br><a href="http://orders/AccountInfo.aspx?aid=53047"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35098" target="_blank">35098</a>
+		<br><font size="2">Masterminds</font>&nbsp;</td>
+		
+		
+		<td align="center">53047
+		
+		<br><i>6727 Delilah Rd, Egg Harbor Township, NJ</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 4:39:32 PM&nbsp;</td>
+		<td>11/13/2013 5:22:29 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 44m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51278">V51278 </a><br><a href="http://orders/AccountInfo.aspx?aid=62793"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39081" target="_blank">39081</a>
+		<br><font size="2">Willis Automotive of Middletown</font>&nbsp;</td>
+		
+		
+		<td align="center">62793
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Forward
+        
+        </td>
+		<td>11/22/2013 3:34:42 PM&nbsp;</td>
+		<td>11/20/2013 4:58:26 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			52h 39m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51281">FD51281 </a><br><a href="http://orders/AccountInfo.aspx?aid=63012"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32403" target="_blank">32403</a>
+		<br><font size="2">Route 22 Auto</font>&nbsp;</td>
+		
+		
+		<td align="center">63012
+		
+		<br><i>Nissan - 56 US Hwy 22</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          International Usage
+        
+        </td>
+		<td>11/22/2013 12:20:04 PM&nbsp;</td>
+		<td>11/20/2013 10:29:08 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			49h 25m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51321">V51321 </a><br><a href="http://orders/AccountInfo.aspx?aid=52226"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34378" target="_blank">34378</a>
+		<br><font size="2">UOSS</font>&nbsp;</td>
+		
+		
+		<td align="center">52226
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 5:12:20 PM&nbsp;</td>
+		<td>11/21/2013 3:59:07 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 17m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51361">E51361 </a><br><a href="http://orders/AccountInfo.aspx?aid=60131"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38592" target="_blank">38592</a>
+		&nbsp;</td>
+		
+		
+		<td align="center">60131
+		
+		<br><i>Imported from Ruby Account Type = Monthly IP/WEB</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Send/Recieve Issues
+        
+        </td>
+		<td>11/22/2013 5:00:54 PM&nbsp;</td>
+		<td>11/22/2013 2:57:05 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 5m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51364">H51364 </a><br><a href="http://orders/AccountInfo.aspx?aid=60563"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34822" target="_blank">34822</a>
+		<br><font size="2">Excess Reinsurance Underwriters Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">60563
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          FrontPage removal
+        
+        </td>
+		<td>11/22/2013 5:00:45 PM&nbsp;</td>
+		<td>11/22/2013 3:21:58 PM&nbsp;</td>
+		<td align="center">michael.elliot&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 5m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51372">I51372 </a><br><a href="http://orders/AccountInfo.aspx?aid="><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=11797" target="_blank">11797</a>
+		<br><font size="2">Netcarrier Administrator</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow"><br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          scheduling emails
+        
+        </td>
+		<td>11/22/2013 8:08:03 PM&nbsp;</td>
+		<td>11/22/2013 5:33:27 PM&nbsp;</td>
+		<td align="center">brian.behmke&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			57h 13m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=42634">V42634 </a><br><a href="http://orders/AccountInfo.aspx?aid=64241"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40047" target="_blank">40047</a>
+		<br><font size="2">Associates in Plastic</font>&nbsp;</td>
+		
+		
+		<td align="center">64241
+		
+		<br><i>westfield</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Outbound Call Failure
+        
+        </td>
+		<td>11/8/2013 10:20:14 AM&nbsp;</td>
+		<td>2/5/2013 11:08:59 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc3.png" alt="Escalation Level 3">&nbsp;<br>
+			-144h -35m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=44944">V44944 </a><br><a href="http://orders/AccountInfo.aspx?aid=64146"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40016" target="_blank">40016</a>
+		<br><font size="2">Capano Management Company</font>&nbsp;</td>
+		
+		
+		<td align="center">64146
+		
+		<br><i>105 Foulk Road</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          411 Issues
+        
+        </td>
+		<td>11/22/2013 2:47:29 PM&nbsp;</td>
+		<td>4/29/2013 4:03:16 PM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 52m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=45265">V45265 </a><br><a href="http://orders/AccountInfo.aspx?aid=60266"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38679" target="_blank">38679</a>
+		<br><font size="2">E &amp; L Battery and Ignition Co</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">60266<br><i>Sensitive Due To: Circuit Issues</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          411 Issues
+        
+        </td>
+		<td>11/11/2013 9:37:31 AM&nbsp;</td>
+		<td>5/13/2013 11:12:58 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc2.png" alt="Escalation Level 2">&nbsp;<br>
+			-73h -18m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=45577">HP45577 </a><br><a href="http://orders/AccountInfo.aspx?aid=49187"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49187<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>DAYLESFORD - 1440 Russell Rd</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Forwarded Messages
+        
+        </td>
+		<td>9/25/2013 10:45:33 AM&nbsp;</td>
+		<td>5/23/2013 1:22:03 PM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Software Development&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		<img src="./NetCarrier Trouble Tickets_files/esc3.png" alt="Escalation Level 3">&nbsp;<br>
+			-1200h -10m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=45896">HP45896 </a><br><a href="http://orders/AccountInfo.aspx?aid=49187"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">49187<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>DAYLESFORD - 1440 Russell Rd</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 11:18:42 AM&nbsp;</td>
+		<td>6/4/2013 12:42:55 PM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			48h 23m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51371">H51371 </a><br><a href="http://orders/AccountInfo.aspx?aid=60177"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38624" target="_blank">38624</a>
+		<br><font size="2">Frankel Financial Corporation</font>&nbsp;</td>
+		
+		
+		<td align="center">60177
+		
+		<br><i>Imported from Ruby Account Type = 12 Month DNS</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Zone File Change
+        
+        </td>
+		<td>11/23/2013 10:49:01 AM&nbsp;</td>
+		<td>11/22/2013 5:31:48 PM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			23h 54m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51373">H51373 </a><br><a href="http://orders/AccountInfo.aspx?aid=60180"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">In Process&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38624" target="_blank">38624</a>
+		<br><font size="2">Frankel Financial Corporation</font>&nbsp;</td>
+		
+		
+		<td align="center">60180
+		
+		<br><i>Imported from Ruby Account Type = 12 Month DNS</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Zone File Change
+        
+        </td>
+		<td>11/23/2013 10:48:52 AM&nbsp;</td>
+		<td>11/22/2013 5:40:18 PM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			23h 53m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51376">I51376 </a><br><a href="http://orders/AccountInfo.aspx?aid="><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=11797" target="_blank">11797</a>
+		<br><font size="2">Netcarrier Administrator</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow"><br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Equipment Fault
+        
+        </td>
+		<td>11/23/2013 7:21:41 AM&nbsp;</td>
+		<td>11/22/2013 7:14:06 PM&nbsp;</td>
+		<td align="center">paul.loizeaux&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			68h 26m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50849">V50849 </a><br><a href="http://orders/AccountInfo.aspx?aid=64602"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40159" target="_blank">40159</a>
+		<br><font size="2">Cape Bank</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">64602<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>Egg Harbor-4096 English Creek Ave</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Call Feature
+        
+        </td>
+		<td>11/21/2013 10:38:45 AM&nbsp;</td>
+		<td>11/7/2013 6:38:19 PM&nbsp;</td>
+		<td align="center">seth.gibbs&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			23h 43m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50993">V50993 </a><br><a href="http://orders/AccountInfo.aspx?aid=64597"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40159" target="_blank">40159</a>
+		<br><font size="2">Cape Bank</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">64597<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>Cape May-HQ-211-255 (225) N Main Street</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Home User ALG Issue
+        
+        </td>
+		<td>11/20/2013 5:25:50 PM&nbsp;</td>
+		<td>11/12/2013 4:34:26 PM&nbsp;</td>
+		<td align="center">seth.gibbs&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			6h 30m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51263">V51263 </a><br><a href="http://orders/AccountInfo.aspx?aid=61358"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38771" target="_blank">38771</a>
+		<br><font size="2">Pluese, Becker, Saltzman LLC</font>&nbsp;</td>
+		
+		
+		<td align="center">61358
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 3:02:50 PM&nbsp;</td>
+		<td>11/20/2013 12:04:09 PM&nbsp;</td>
+		<td align="center">seth.gibbs&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			52h 7m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50928">HP50928 </a><br><a href="http://orders/AccountInfo.aspx?aid=61783"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38873" target="_blank">38873</a>
+		<br><font size="2">Mallin, Panchelli, Nadel Realty Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">61783
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Issue with a new phone
+        
+        </td>
+		<td>11/22/2013 5:06:10 PM&nbsp;</td>
+		<td>11/11/2013 9:56:33 AM&nbsp;</td>
+		<td align="center">brian.behmke&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Dispatch&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 11m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51050">AS51050 </a><br><a href="http://orders/AccountInfo.aspx?aid=49305"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32127" target="_blank">32127</a>
+		<br><font size="2">Continental Warranty, Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">49305
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/21/2013 7:52:04 AM&nbsp;</td>
+		<td>11/13/2013 5:01:16 PM&nbsp;</td>
+		<td align="center">brian.behmke&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			20h 57m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51095">V51095 </a><br><a href="http://orders/AccountInfo.aspx?aid=49305"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32127" target="_blank">32127</a>
+		<br><font size="2">Continental Warranty, Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">49305
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Outbound Call Failure
+        
+        </td>
+		<td>11/21/2013 7:52:12 AM&nbsp;</td>
+		<td>11/14/2013 5:05:45 PM&nbsp;</td>
+		<td align="center">brian.behmke&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			20h 57m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51224">HP51224 </a><br><a href="http://orders/AccountInfo.aspx?aid=64704"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40175" target="_blank">40175</a>
+		<br><font size="2">Allied Dental</font>&nbsp;</td>
+		
+		
+		<td align="center">64704
+		
+		<br><i>Turnsersville Cross Keys</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Busy Signal Playing in x3101/3102 handset when dialing outbound and receiving inbound
+        
+        </td>
+		<td>11/22/2013 5:41:52 PM&nbsp;</td>
+		<td>11/19/2013 11:28:25 AM&nbsp;</td>
+		<td align="center">brian.behmke&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Network Operations&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 46m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51127">HP51127 </a><br><a href="http://orders/AccountInfo.aspx?aid=65150"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40302" target="_blank">40302</a>
+		<br><font size="2">McDowell Posternock Law</font>&nbsp;</td>
+		
+		
+		<td align="center">65150
+		
+		<br><i>Moorestown</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 12:33:17 PM&nbsp;</td>
+		<td>11/15/2013 12:44:45 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			49h 38m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51269">V51269 </a><br><a href="http://orders/AccountInfo.aspx?aid=46161"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=30944" target="_blank">30944</a>
+		<br><font size="2">Sterling Helicopter</font>&nbsp;</td>
+		
+		
+		<td align="center">46161
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Credit Card Issue
+        
+        </td>
+		<td>11/22/2013 4:25:18 PM&nbsp;</td>
+		<td>11/20/2013 1:10:06 PM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 30m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51305">HP51305 </a><br><a href="http://orders/AccountInfo.aspx?aid=65157"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40306" target="_blank">40306</a>
+		<br><font size="2">Backal Pomerantz Wealth Management</font>&nbsp;</td>
+		
+		
+		<td align="center">65157
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 4:20:05 PM&nbsp;</td>
+		<td>11/21/2013 11:23:16 AM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 25m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51336">V51336 </a><br><a href="http://orders/AccountInfo.aspx?aid=47362"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31352" target="_blank">31352</a>
+		<br><font size="2">Beacon Insurance Services</font>&nbsp;</td>
+		
+		
+		<td align="center">47362
+		
+		<br><i>4846841101 DTO 6106873690</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 3:22:22 PM&nbsp;</td>
+		<td>11/22/2013 8:49:55 AM&nbsp;</td>
+		<td align="center">leonard.thomas&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			52h 27m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50479">AS50479 </a><br><a href="http://orders/AccountInfo.aspx?aid=62345"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38932" target="_blank">38932</a>
+		<br><font size="2">General Floor</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">62345<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>Bellmawr NJ***SEE MASTER TAB FOR SPECIAL OUTAGE INSTRUCTIONS****</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/22/2013 3:53:12 PM&nbsp;</td>
+		<td>10/30/2013 1:41:39 PM&nbsp;</td>
+		<td align="center">chance.carr&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			52h 58m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50778">V50778 </a><br><a href="http://orders/AccountInfo.aspx?aid=60353"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=38696" target="_blank">38696</a>
+		<br><font size="2">Morrone &amp; Kaye Orthodontics</font>&nbsp;</td>
+		
+		
+		<td align="center">60353
+		
+		<br><i>Moorestown - SIPX Platform</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Dropped Calls
+        
+        </td>
+		<td>11/22/2013 12:41:35 PM&nbsp;</td>
+		<td>11/6/2013 12:55:06 PM&nbsp;</td>
+		<td align="center">chance.carr&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			49h 46m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50944">V50944 </a><br><a href="http://orders/AccountInfo.aspx?aid=48961"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31973" target="_blank">31973</a>
+		<br><font size="2">Albert Tire Company</font>&nbsp;</td>
+		
+		
+		<td align="center">48961
+		
+		<br><i>includes 3Mb TF PRI</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 3:39:00 PM&nbsp;</td>
+		<td>11/11/2013 1:02:08 PM&nbsp;</td>
+		<td align="center">chance.carr&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			52h 44m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51239">DN51239 </a><br><a href="http://orders/AccountInfo.aspx?aid=65144"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40300" target="_blank">40300</a>
+		<br><font size="2">Stratmar Retail Services</font>&nbsp;</td>
+		
+		
+		<td align="center">65144
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          PTR Request
+        
+        </td>
+		<td>11/22/2013 8:46:17 PM&nbsp;</td>
+		<td>11/19/2013 5:22:05 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			57h 51m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51248">V51248 </a><br><a href="http://orders/AccountInfo.aspx?aid=65143"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40299" target="_blank">40299</a>
+		<br><font size="2">Law Office of Stephen Markey</font>&nbsp;</td>
+		
+		
+		<td align="center">65143
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Outbound Call Failure
+        
+        </td>
+		<td>11/22/2013 4:38:49 PM&nbsp;</td>
+		<td>11/20/2013 9:26:17 AM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 43m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51318">V51318 </a><br><a href="http://orders/AccountInfo.aspx?aid=63222"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39211" target="_blank">39211</a>
+		<br><font size="2">Hypex Packaging Technologies LLC</font>&nbsp;</td>
+		
+		
+		<td align="center">63222
+		
+		<br><i>FTP Info</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Caller ID
+        
+        </td>
+		<td>11/22/2013 2:36:46 PM&nbsp;</td>
+		<td>11/21/2013 2:43:56 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 41m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50698">V50698 </a><br><a href="http://orders/AccountInfo.aspx?aid=65143"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40299" target="_blank">40299</a>
+		<br><font size="2">Law Office of Stephen Markey</font>&nbsp;</td>
+		
+		
+		<td align="center">65143
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 4:38:42 PM&nbsp;</td>
+		<td>11/5/2013 2:06:41 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 43m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51022">V51022 </a><br><a href="http://orders/AccountInfo.aspx?aid=53856"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35538" target="_blank">35538</a>
+		<br><font size="2">Martin Healthcare Advisors</font>&nbsp;</td>
+		
+		
+		<td align="center">53856
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 4:39:20 PM&nbsp;</td>
+		<td>11/13/2013 11:52:24 AM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 44m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51200">V51200 </a><br><a href="http://orders/AccountInfo.aspx?aid=48228"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=29833" target="_blank">29833</a>
+		<br><font size="2">Joel Cardis, Llc</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">48228<br><i>Sensitive Due To: Circuit Issues</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Alarm
+        
+        </td>
+		<td>11/22/2013 4:17:47 PM&nbsp;</td>
+		<td>11/18/2013 12:24:37 PM&nbsp;</td>
+		<td align="center">albert.bulik&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 22m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51363">HP51363 </a><br><a href="http://orders/AccountInfo.aspx?aid=65030"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40264" target="_blank">40264</a>
+		<br><font size="2">Adina Gabriela LLC dba The Closet Works</font>&nbsp;</td>
+		
+		
+		<td align="center">65030
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          
+        
+        </td>
+		<td>11/22/2013 5:54:12 PM&nbsp;</td>
+		<td>11/22/2013 3:18:28 PM&nbsp;</td>
+		<td align="center">kevin.johnson&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 59m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=49509">AS49509 </a><br><a href="http://orders/AccountInfo.aspx?aid=64829"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40221" target="_blank">40221</a>
+		<br><font size="2">Norris Square Civic Association</font>&nbsp;</td>
+		
+		
+		<td align="center">64829
+		
+		<br><i>Install Address: 2014 N. Mascher Street</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/22/2013 10:59:46 PM&nbsp;</td>
+		<td>9/30/2013 8:16:09 PM&nbsp;</td>
+		<td align="center">chris.kepner&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			60h 4m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50815">O50815 </a><br><a href="http://orders/AccountInfo.aspx?aid=61513"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35457" target="_blank">35457</a>
+		<br><font size="2">Optimus Partners</font>&nbsp;</td>
+		
+		
+		<td align="center">61513
+		
+		<br><i>50 W. State St., Trenton, NJ</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Customer Requesting Dispatch, to Find Where This Line Goes
+        
+        </td>
+		<td>11/23/2013 12:06:39 AM&nbsp;</td>
+		<td>11/7/2013 10:05:37 AM&nbsp;</td>
+		<td align="center">chris.kepner&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			61h 11m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51157">AS51157 </a><br><a href="http://orders/AccountInfo.aspx?aid=62820"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39084" target="_blank">39084</a>
+		<br><font size="2">Weintraub Telecomm LLC-Healthsignals-Beaumont @ Br</font>&nbsp;</td>
+		
+		
+		<td align="center">62820
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 12:07:28 AM&nbsp;</td>
+		<td>11/17/2013 5:57:02 AM&nbsp;</td>
+		<td align="center">chris.kepner&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			61h 12m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51195">AS51195 </a><br><a href="http://orders/AccountInfo.aspx?aid=64495"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40130" target="_blank">40130</a>
+		<br><font size="2">HRM USA</font>&nbsp;</td>
+		
+		
+		<td align="center">64495
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Service Outage
+        
+        </td>
+		<td>11/23/2013 12:07:43 AM&nbsp;</td>
+		<td>11/18/2013 11:10:38 AM&nbsp;</td>
+		<td align="center">chris.kepner&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			61h 12m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51287">I51287 </a><br><a href="http://orders/AccountInfo.aspx?aid="><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=11797" target="_blank">11797</a>
+		<br><font size="2">Netcarrier Administrator</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow"><br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Equipment Fault
+        
+        </td>
+		<td>11/23/2013 12:06:26 AM&nbsp;</td>
+		<td>11/21/2013 4:27:54 AM&nbsp;</td>
+		<td align="center">chris.kepner&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			61h 11m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51362">HP51362 </a><br><a href="http://orders/AccountInfo.aspx?aid=64309"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32071" target="_blank">32071</a>
+		<br><font size="2">Life Counseling Services - OBH</font>&nbsp;</td>
+		
+		
+		<td align="center" style="background-color:yellow">64309<br><i>Sensitive Due To: Other</i>&nbsp;
+		
+		<br><i>York-45 Wyntre Brook Drive</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          ACD
+        
+        </td>
+		<td>11/22/2013 10:08:33 PM&nbsp;</td>
+		<td>11/22/2013 3:15:17 PM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			59h 13m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51299">HP51299 </a><br><a href="http://orders/AccountInfo.aspx?aid=64683"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40170" target="_blank">40170</a>
+		<br><font size="2">The Malvern School</font>&nbsp;</td>
+		
+		
+		<td align="center">64683
+		
+		<br><i>West Norriton 10</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          One way audio
+        
+        </td>
+		<td>11/21/2013 3:03:06 PM&nbsp;</td>
+		<td>11/21/2013 10:35:22 AM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			28h 8m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51317">H51317 </a><br><a href="http://orders/AccountInfo.aspx?aid=61367"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34654" target="_blank">34654</a>
+		<br><font size="2">Winslow Township Fire District #1</font>&nbsp;</td>
+		
+		
+		<td align="center">61367
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Frontpage
+        
+        </td>
+		<td>11/22/2013 2:43:46 PM&nbsp;</td>
+		<td>11/21/2013 2:42:33 PM&nbsp;</td>
+		<td align="center">robert.greisemer&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			51h 48m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50291">HP50291 </a><br><a href="http://orders/AccountInfo.aspx?aid=50496"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32691" target="_blank">32691</a>
+		<br><font size="2">Advance Scale Company Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">50496
+		
+		<br><i>2400 Egg Harbor Rd Lindenwold, NJ</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 4:55:31 PM&nbsp;</td>
+		<td>10/23/2013 3:35:18 PM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 0m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50806">HP50806 </a><br><a href="http://orders/AccountInfo.aspx?aid=65203"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=39091" target="_blank">39091</a>
+		<br><font size="2">John P Holroyd Agency</font>&nbsp;</td>
+		
+		
+		<td align="center">65203
+		
+		<br><i>Phoenixville</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Music on Hold
+        
+        </td>
+		<td>11/21/2013 10:57:31 AM&nbsp;</td>
+		<td>11/7/2013 8:51:39 AM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			
+				<font color="gray">
+			Voice Engineering&nbsp;
+
+			
+					<br>
+					<img src="./NetCarrier Trouble Tickets_files/arrow.png" height="20" width="20" alt="Ticket assigned to another group" border="0">
+				</font>
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			24h 2m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50820">HP50820 </a><br><a href="http://orders/AccountInfo.aspx?aid=51838"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34016" target="_blank">34016</a>
+		<br><font size="2">St. Marks High School</font>&nbsp;</td>
+		
+		
+		<td align="center">51838
+		
+		<br><i>**Call Linda immediately in the event of an outage, day or night: 302-293-1306***</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 4:56:01 PM&nbsp;</td>
+		<td>11/7/2013 12:13:36 PM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 1m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50961">AS50961 </a><br><a href="http://orders/AccountInfo.aspx?aid=48878"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=31947" target="_blank">31947</a>
+		<br><font size="2">Bonland Industries, Inc</font>&nbsp;</td>
+		
+		
+		<td align="center">48878
+		
+		<br><i>Wayne - 3MB "When down call Chris @ 973-694-3211 Ext. 228 And 973-418-7435"</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Circuit Alarm
+        
+        </td>
+		<td>11/22/2013 4:56:33 PM&nbsp;</td>
+		<td>11/12/2013 9:04:43 AM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 1m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51067">V51067 </a><br><a href="http://orders/AccountInfo.aspx?aid=65138"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40298" target="_blank">40298</a>
+		<br><font size="2">Plastic Surgery</font>&nbsp;</td>
+		
+		
+		<td align="center">65138
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Voice Quality
+        
+        </td>
+		<td>11/22/2013 4:56:55 PM&nbsp;</td>
+		<td>11/14/2013 8:49:43 AM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 1m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51122">V51122 </a><br><a href="http://orders/AccountInfo.aspx?aid=53541"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35454" target="_blank">35454</a>
+		<br><font size="2">Liberty Technology Solutions</font>&nbsp;</td>
+		
+		
+		<td align="center">53541
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Inbound Call Failure
+        
+        </td>
+		<td>11/22/2013 4:57:39 PM&nbsp;</td>
+		<td>11/15/2013 12:14:14 PM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 2m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51360">HP51360 </a><br><a href="http://orders/AccountInfo.aspx?aid=65144"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40300" target="_blank">40300</a>
+		<br><font size="2">Stratmar Retail Services</font>&nbsp;</td>
+		
+		
+		<td align="center">65144
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Registration Issue
+        
+        </td>
+		<td>11/22/2013 7:32:00 PM&nbsp;</td>
+		<td>11/22/2013 1:41:17 PM&nbsp;</td>
+		<td align="center">zachary.wile&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			56h 37m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=50688">V50688 </a><br><a href="http://orders/AccountInfo.aspx?aid=49011"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=32001" target="_blank">32001</a>
+		<br><font size="2">Roger Green &amp; Associates</font>&nbsp;</td>
+		
+		
+		<td align="center">49011
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Call Forwards
+        
+        </td>
+		<td>11/22/2013 4:26:02 PM&nbsp;</td>
+		<td>11/5/2013 11:25:42 AM&nbsp;</td>
+		<td align="center">christopher.newell&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 31m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51029">V51029 </a><br><a href="http://orders/AccountInfo.aspx?aid=61431"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=34706" target="_blank">34706</a>
+		<br><font size="2">Grayhair Software</font>&nbsp;</td>
+		
+		
+		<td align="center">61431
+		
+		<br><i>PENNSAUKEN COLO</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Dropped Calls
+        
+        </td>
+		<td>11/22/2013 4:53:21 PM&nbsp;</td>
+		<td>11/13/2013 12:39:34 PM&nbsp;</td>
+		<td align="center">christopher.newell&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 58m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51253">V51253 </a><br><a href="http://orders/AccountInfo.aspx?aid=64336"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40074" target="_blank">40074</a>
+		<br><font size="2">The Cline Group</font>&nbsp;</td>
+		
+		
+		<td align="center">64336
+		
+		<br><i>NPA-Comcast 22/5MB</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Call Feature
+        
+        </td>
+		<td>11/22/2013 4:52:17 PM&nbsp;</td>
+		<td>11/20/2013 10:18:08 AM&nbsp;</td>
+		<td align="center">christopher.newell&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			53h 57m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51304">V51304 </a><br><a href="http://orders/AccountInfo.aspx?aid=60369"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=35223" target="_blank">35223</a>
+		<br><font size="2">Orthopedic Institute</font>&nbsp;</td>
+		
+		
+		<td align="center">60369
+		
+		<br><i>Toms River</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Fax Issue
+        
+        </td>
+		<td>11/22/2013 5:01:38 PM&nbsp;</td>
+		<td>11/21/2013 11:22:07 AM&nbsp;</td>
+		<td align="center">christopher.newell&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			54h 6m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ffffff">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51366">HP51366 </a><br><a href="http://orders/AccountInfo.aspx?aid=65157"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=40306" target="_blank">40306</a>
+		<br><font size="2">Backal Pomerantz Wealth Management</font>&nbsp;</td>
+		
+		
+		<td align="center">65157
+		
+		<br><i></i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          Phone Feature Issue
+        
+        </td>
+		<td>11/22/2013 10:14:44 PM&nbsp;</td>
+		<td>11/22/2013 3:54:01 PM&nbsp;</td>
+		<td align="center">christopher.newell&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			59h 19m
+		</td>
+		
+		</tr>
+		<tr bgcolor="ececec">
+		<td align="center"><a href="http://tickets/tickets/viewticket.asp?id=51378">E51378 </a><br><a href="http://orders/AccountInfo.aspx?aid=55790"><img src="./NetCarrier Trouble Tickets_files/orders_small.gif" height="20" width="20" alt="View Orders" border="0"></a></td>
+		<td align="center">Waiting&nbsp;</td>
+		<td align="center" bgcolor="3CB371">
+		
+		Informational&nbsp;</td>
+		<td><a href="http://tickets/tickets/customer.asp?id=36400" target="_blank">36400</a>
+		&nbsp;</td>
+		
+		
+		<td align="center">55790
+		
+		<br><i>Imported from Ruby Account Type = Monthly Alias</i>&nbsp;
+		
+		</td>
+		
+		
+		<td>
+		
+          
+        
+        </td>
+		<td>11/22/2013 8:40:22 PM&nbsp;</td>
+		<td>11/22/2013 7:53:17 PM&nbsp;</td>
+		<td align="center">christopher.newell&nbsp;</td>
+		
+		<td align="center">
+		
+			CallCenter&nbsp;
+
+					
+		
+		</td>
+		
+		
+		<td align="center">
+		&nbsp;<br>
+			57h 45m
+		</td>
+		
+		</tr>
+		
+</thead></table>
+</form>
+<a name="bottom"></a>
+<table border="0" cellspacing="2" cellpadding="0" style="margin-left:20">
+	<tbody><tr>
+		<td><font size="-3">© 2012 NetCarrier - TroubleTicketSys v3.2.0 - 
+			<a href="http://tickets/tickets/changelog.asp">Change Log</a> | 
+			<a href="mailto:softwaredevelopment@corp.netcarrier.com">Issues?</a> | 
+			<a href="http://tickets/tickets/legend.asp">Color Legend</a> </font>	</td>
+	</tr>
+</tbody></table></div>
+
+
+
+
+
+
+</body></html>

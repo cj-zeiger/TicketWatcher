@@ -18,6 +18,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		loadData();
+		Gui test = new Gui();
 	}
 	private static void updateUi() {
 		int numberOfTickets = ticketHolder.size();
@@ -31,7 +32,7 @@ public class Main {
 	{
 		try {
 			//Document tickets = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			File input = new File("C:/nctickets.html");
+			File input = new File("nctickets.html");
 			Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements rows = webPage.select("tr");
 			for (Element element : rows){
@@ -46,6 +47,7 @@ public class Main {
 				ticketHolder.add(holderTicket);
 			}
 			} catch (IOException e) {
+				System.out.println(e.toString());
 			}
 		updateUi();
 	}
