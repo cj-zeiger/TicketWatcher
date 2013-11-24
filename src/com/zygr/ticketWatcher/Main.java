@@ -1,16 +1,15 @@
 package com.zygr.ticketWatcher;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.TreeItem;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 public class Main {
 	public final static String CJ_NAME = "carl.zeiger";	
 	public static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
@@ -18,9 +17,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		loadData();
-		MainWindow main = new MainWindow();
-		main.open();
-		
+		Gui gui = new Gui();
+		gui.open();
 	}
 	private static void updateUi() {
 		int numberOfTickets = ticketHolder.size();
@@ -29,7 +27,6 @@ public class Main {
 			numberOfTickets--;
 		}
 	}
-	@SuppressWarnings("null")
 	private static void loadData() 
 	{
 		try {
@@ -38,7 +35,6 @@ public class Main {
 			Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements rows = webPage.select("tr");
 			for (Element element : rows){
-				System.out.println(element.text() + "\n");
 				Elements col = element.select("td");
 				int colIndex = 0;
 				Tickets holderTicket = new Tickets();
@@ -46,14 +42,16 @@ public class Main {
 					holderTicket.setAll(colIndex, collums.text());
 					colIndex++;
 				}
-				ticketHolder.add(holderTicket);
+				boolean clean = true;
+				for (int x = 0; x<11;x++){
+					if (holderTicket.getAll(x)==null || holderTicket.getAll(x).isEmpty())
+						clean = false;
+				}
+				if (clean)
+					ticketHolder.add(holderTicket);
 			}
 			} catch (IOException e) {
 				System.out.println(e.toString());
 			}
-		updateUi();
 	}
-	private static void print(String msg, Object... args) {
-        System.out.println(String.format(msg, args));
-    }
 }

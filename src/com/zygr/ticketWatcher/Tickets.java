@@ -3,19 +3,23 @@ package com.zygr.ticketWatcher;
 public class Tickets extends Object{
 		private String ticketNumber;
 		private String ticketStatus;
-		private String ticketType;
-		private String ticketDescriptor;
-		private String ticketIssue;
+		private String ticketPriority;
+		private String ticketCustomer;
+		private String accountNumber;
+		private String ticketSubject;
 		private String ticketOwner;
+		private String ticketGroup;
 		private String ticketEscalationTime;
 		
-		public final int INDEX_TICKETNUMBER = 0;
-		public final int INDEX_STATUS = 1;
-		public final int INDEX_TYPE = 2;
-		public final int INDEX_DESCRIPTOR = 4;
-		public final int INDEX_ISSUE = 5;
-		public final int INDEX_OWNER = 8;
-		public final int INDEX_ESCALATIONTIME = 10;
+		public final static int INDEX_TICKETNUMBER = 0;
+		public final static int INDEX_STATUS = 1;
+		public final static int INDEX_PRIORITY = 2;
+		public final static int INDEX_CUSTOMER = 3;
+		public final static int INDEX_ACCOUNT = 4;
+		public final static int INDEX_SUBJECT = 5;
+		public final static int INDEX_OWNER = 8;
+		public final static int INDEX_GROUP = 9;
+		public final static int INDEX_ESCALATIONTIME = 10;
 		
 	//Constructor
 	public Tickets(){
@@ -28,17 +32,36 @@ public class Tickets extends Object{
 		break;
 		case INDEX_STATUS: setStatus(pString);
 		break;
-		case INDEX_TYPE: setType(pString);
+		case INDEX_PRIORITY: setPriority(pString);
 		break;
-		case INDEX_DESCRIPTOR: setDescriptor(pString);
+		case INDEX_CUSTOMER: setCustomer(pString);
 		break;
-		case INDEX_ISSUE: setIssue(pString);
+		case INDEX_ACCOUNT: setAccount(pString);
+		break;
+		case INDEX_SUBJECT: setSubject(pString);
 		break;
 		case INDEX_OWNER: setOwner(pString);
 		break;
+		case INDEX_GROUP: setGroup(pString);
+		break;
 		case INDEX_ESCALATIONTIME: setEscalationTime(pString);
 		break;
-		default: break;
+		default:
+			break;
+		}
+	}
+	public String getAll(int index){
+		switch (index){
+		case INDEX_TICKETNUMBER: return getTicketNumber();
+		case INDEX_STATUS: return getStatus();
+		case INDEX_PRIORITY: return getPriority();
+		case INDEX_CUSTOMER: return getCustomer();
+		case INDEX_ACCOUNT: return getAccount();
+		case INDEX_SUBJECT: return getSubject();
+		case INDEX_OWNER: return getOwner();
+		case INDEX_GROUP: return getGroup();
+		case INDEX_ESCALATIONTIME: return getEscalationTime();
+		default: return "blank string";
 		}
 	}
 	public void setTicketNumber(String pticketNumber){
@@ -49,22 +72,31 @@ public class Tickets extends Object{
 		
 		ticketStatus = pticketStatus;
 		}
-	public void setType(String pticketType){
+	public void setPriority(String pticketPriority){
 		
-		ticketType = pticketType;
+		ticketPriority = pticketPriority;
 		}
-	public void setDescriptor(String pticketDescriptor){
-	
-		ticketDescriptor = pticketDescriptor;
+	public void setCustomer(String pticketCustomer){
+		
+		ticketCustomer = pticketCustomer;
 		}
-	public void setIssue(String pticketIssue){
+	public void setAccount(String paccountNumber){
 	
-		ticketIssue = pticketIssue;
+		accountNumber = paccountNumber;
+		}
+	public void setSubject(String pticketSubject){
+	
+		ticketSubject = pticketSubject;
 		}
 	public void setOwner(String pticketOwner){
 	
 		ticketOwner = pticketOwner;
+	}
+	public void setGroup(String pticketGroup){
+		
+		ticketGroup = pticketGroup;
 		}
+
 	public void setEscalationTime(String pticketEscalationTime){
 		
 		ticketEscalationTime = pticketEscalationTime;
@@ -79,31 +111,55 @@ public class Tickets extends Object{
 	
 		return ticketStatus;
 	}
-	public String  getType(){
+	public String  getPriority(){
 	
-		return ticketType;
+		return ticketPriority;
 	}
-	public String  getDescriptor(){
-
-		return ticketDescriptor;
+	public String  getCustomer(){
+		
+		return ticketCustomer;
 	}
-	public String  getIssue(){
+	public String  getAccount(){
 
-		return ticketIssue;
+		return accountNumber;
+	}
+	public String  getSubject(){
+
+		return ticketSubject;
 	}
 	public String  getOwner(){
 
 		return ticketOwner;
 	}
+	public String  getGroup(){
+
+		return ticketGroup;
+	}
 	public String  getEscalationTime(){
 	
 		return ticketEscalationTime;
 	}
+	public String[] info(){
+		String[] infoString = new String[11];
+		for (int x =0; x<11;x++){
+			if(x!=6&&x!=7)
+				infoString[x] = getAll(x);
+		}
+		
+		return infoString;
+	}
 	public String  formatText(){
+		
 		String formatedInfo = ("Ticket Number: " + ticketNumber+
-				"\nTicket Type: " + ticketType +
 				"\nTicket Status: " + ticketStatus+
-				"\nTicket Owner: "+ ticketOwner +"\n\n\n");
+				"\nTicket Priority: " + ticketPriority +
+				"\nCustomer: " + ticketCustomer +
+				"\nAccount Number: " + accountNumber+
+				"\nTickt Subject: " + ticketSubject+
+				"\nTicket Owner: "+ ticketOwner +
+				"\nTicket Group: " + ticketGroup +
+				"\nEscilation Time: " + ticketEscalationTime+
+				"\n\n\n");
 		
 		
 		return formatedInfo;
