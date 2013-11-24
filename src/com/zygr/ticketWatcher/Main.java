@@ -18,7 +18,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		loadData();
-		Gui test = new Gui();
+		MainWindow main = new MainWindow();
+		main.open();
+		
 	}
 	private static void updateUi() {
 		int numberOfTickets = ticketHolder.size();

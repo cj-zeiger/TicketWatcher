@@ -8,26 +8,15 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.List;
 
-public class MainWindo {
+public class MainWindow {
 
 	protected Shell shlTicketwatcher;
 
+	
 	/**
-	 * Launch the application.
-	 * @param args
+	 * @wbp.parser.entryPoint
 	 */
-	public static void main(String[] args) {
-		try {
-			MainWindo window = new MainWindo();
-			window.open();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Open the window.
-	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -62,6 +51,12 @@ public class MainWindo {
 		
 		List list = new List(shlTicketwatcher, SWT.BORDER);
 		list.setBounds(10, 10, 180, 642);
-
+		for (Tickets ticket: Main.ticketHolder){
+			if(ticket.getOwner()!=null)
+				list.add(ticket.getOwner());
+		}
+		
 	}
+	
+	
 }
