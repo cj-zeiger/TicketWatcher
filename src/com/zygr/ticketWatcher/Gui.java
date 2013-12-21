@@ -89,7 +89,7 @@ public class Gui {
 		
 		Browser browser = new Browser(shell, SWT.NONE);
 		browser.setBounds(265, 10, 989, 642);
-		browser.setUrl("https://www.c)
+		browser.setUrl("https://www.google.com");
 		for (Tickets ticket: Main.ticketHolder){
 			TreeItem test = new TreeItem(tree, SWT.DEFAULT);
 			test.setText(ticket.getAll(Tickets.INDEX_TICKETNUMBER));
