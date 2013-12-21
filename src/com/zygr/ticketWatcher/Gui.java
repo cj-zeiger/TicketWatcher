@@ -22,7 +22,6 @@ import org.eclipse.swt.browser.Browser;
 public class Gui {
 
 	protected Shell shell;
-	public Tree tree;
 
 	/**
 	 * Launch the application.
@@ -69,8 +68,8 @@ public class Gui {
 		MenuItem mntmNewItem = new MenuItem(menu, SWT.NONE);
 		mntmNewItem.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				
+			public void widgetSelected(SelectionEvent e) {
+				System.out.println("test");
 			}
 		});
 		mntmNewItem.setText("Filter");
@@ -83,21 +82,28 @@ public class Gui {
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		
-		tree = new Tree(scrolledComposite, SWT.BORDER);
-		scrolledComposite.setContent(tree);
-		scrolledComposite.setMinSize(tree.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		Tree t = new Tree(scrolledComposite, SWT.BORDER);
+		t.addSelectionListener(new SelectionAdapter() {
+		  public void widgetSelected(SelectionEvent e){
+		    TreeItem ti = (TreeItem) e.item;
+		    
+		  }
+		});
+		scrolledComposite.setContent(t);
+		scrolledComposite.setMinSize(t.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		
 		Browser browser = new Browser(shell, SWT.NONE);
 		browser.setBounds(265, 10, 989, 642);
 		browser.setUrl("https://www.google.com");
 		for (Tickets ticket: Main.ticketHolder){
-			TreeItem test = new TreeItem(tree, SWT.DEFAULT);
+			TreeItem test = new TreeItem(t, SWT.DEFAULT);
 			test.setText(ticket.getAll(Tickets.INDEX_TICKETNUMBER));
 			for (int x = 0; x < 11; x++){
 				if (x!=6&&x!=7){
 					TreeItem sub = new TreeItem(test, SWT.DEFAULT);
 					sub.setText(ticket.info()[x]);
 				}
+				
 			}
 		}
 	}
