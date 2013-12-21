@@ -16,15 +16,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		loadData();
-		Gui gui = new Gui();
+		TicketListWindow gui = new TicketListWindow();
 		gui.open();
-	}
-	private static void updateUi() {
-		int numberOfTickets = ticketHolder.size();
-		while (numberOfTickets > 0){
-			System.out.println(ticketHolder.get(numberOfTickets-1).formatText());
-			numberOfTickets--;
-		}
 	}
 	private static void loadData() 
 	{

@@ -148,7 +148,8 @@ public class Tickets extends Object{
 		
 		return infoString;
 	}
-	public String  formatText(){
+	
+	public String formatText(){
 		
 		String formatedInfo = ("Ticket Number: " + ticketNumber+
 				"\nTicket Status: " + ticketStatus+
