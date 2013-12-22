@@ -24,19 +24,6 @@ public class TicketListWindow {
 	protected Shell shlTicketwatcher;
 
 	/**
-	 * Launch the application.
-	 * @param args
-	 */
-	//public static void main(String[] args) {
-	//	try {
-	//		Gui window = new Gui();
-	//		window.open();
-	//	} catch (Exception e) {
-	//		e.printStackTrace();
-	//	}
-	//}
-
-	/**
 	 * Open the window.
 	 */
 	public void open() {
@@ -76,6 +63,7 @@ public class TicketListWindow {
 		scrolledComposite.setContent(tree);
 		scrolledComposite.setMinSize(tree.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		TicketManager tm = new TicketManager(tree);
+		
 		
 		
 	}

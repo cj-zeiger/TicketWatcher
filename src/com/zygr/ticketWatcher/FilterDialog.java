@@ -23,7 +23,7 @@ public class FilterDialog extends Dialog {
 	 */
 	public FilterDialog(Shell parent, int style) {
 		super(parent, style);
-		setText("SWT Dialog");
+		setText("Filter");
 	}
 
 	/**

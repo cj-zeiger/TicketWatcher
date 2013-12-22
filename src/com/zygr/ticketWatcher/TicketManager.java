@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.TreeItem;
 
 public class TicketManager {
 	private Tree masterTree;
+	private TicketDetailWindow tw;
 	
 	public TicketManager(Tree t){
 		masterTree = t;
@@ -29,7 +30,12 @@ public class TicketManager {
 					openCloudAccount(number);
 				}
 				if(ti.getData("ticket")!=null){
-					TicketDetailWindow tw = new TicketDetailWindow((Tickets) ti.getData("tiket"));
+					if (tw==null){
+					tw = new TicketDetailWindow();
+					tw.open();
+					}
+					tw.createNewTab((Tickets) ti.getData("ticket"));
+					
 				}
 			}
 		});

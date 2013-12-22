@@ -27,7 +27,6 @@ public class Tickets extends Object{
 	//Sets
 	public void setAll(int index, String pString){
 		switch (index){
-		
 		case INDEX_TICKETNUMBER: setTicketNumber(pString);
 		break;
 		case INDEX_STATUS: setStatus(pString);
@@ -47,7 +46,6 @@ public class Tickets extends Object{
 		case INDEX_ESCALATIONTIME: setEscalationTime(pString);
 		break;
 		default:
-			break;
 		}
 	}
 	public String getAll(int index){
@@ -138,6 +136,9 @@ public class Tickets extends Object{
 	public String  getEscalationTime(){
 	
 		return ticketEscalationTime;
+	}
+	public String getUrl(){
+		return "http://tickets/tickets/viewticket.asp?id=" + ticketNumber.replaceAll("[^\\d.]", "");
 	}
 	public String[] info(){
 		String[] infoString = new String[11];
