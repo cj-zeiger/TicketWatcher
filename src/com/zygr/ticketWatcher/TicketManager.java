@@ -11,45 +11,34 @@ import org.eclipse.swt.widgets.TreeItem;
 
 public class TicketManager {
 	private Tree masterTree;
-	private Browser UIBrowser;
 	
-	public TicketManager(Tree t, Browser b){
-		masterTree = t;
-		UIBrowser = b;
-		addTickets(masterTree);
-		addSelection(masterTree);
-	}
 	public TicketManager(Tree t){
 		masterTree = t;
-		//UIBrowser = b;
 		addTickets(masterTree);
-		//addSelection(masterTree);
+		addSelection(masterTree);
 	}
 	private void addSelection(Tree t){
 		t.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent e){
 				TreeItem ti = (TreeItem) e.item;
-				if (ti.getData("url") != null){
-					UIBrowser.setUrl((String)ti.getData("url"));
-				}
 				if (ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER))!= null){
 					String customerNumber = (String) ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER));
 					customerNumber = customerNumber.replaceAll("[^\\d.]", "");
 					int number = Integer.parseInt(customerNumber);
 					openCloudAccount(number);
 				}
+				if(ti.getData("ticket")!=null){
+					TicketDetailWindow tw = new TicketDetailWindow((Tickets) ti.getData("tiket"));
+				}
 			}
 		});
 	}
 	private void addTickets(Tree t){
 		for (Tickets ticket: Main.ticketHolder){
-			//Creates TreeItem for each item in the ticket holder
 			TreeItem ticketItem = new TreeItem(t, SWT.DEFAULT);
 			ticketItem.setText(ticket.getAll(Tickets.INDEX_TICKETNUMBER));
-			String ticketNumber = ticket.getTicketNumber().replaceAll("[^\\d.]", "");
-			ticketItem.setData("url", "tickets/tickets/viewticket.asp?id=" + ticketNumber);
-			//Creates ticket items for the above ticket's information
+			ticketItem.setData("ticket", ticket);
 			for (int x = 0; x < 11; x++){
 				if (x!=6&&x!=7){
 					TreeItem sub = new TreeItem(ticketItem, SWT.DEFAULT);

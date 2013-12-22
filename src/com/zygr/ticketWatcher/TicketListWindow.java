@@ -57,8 +57,7 @@ public class TicketListWindow {
 	 */
 	protected void createContents() {
 		shlTicketwatcher = new Shell();
-		shlTicketwatcher.setMinimumSize(new Point(300, 600));
-		shlTicketwatcher.setSize(450, 620);
+		shlTicketwatcher.setSize(450, 700);
 		shlTicketwatcher.setText("TicketWatcher");
 		shlTicketwatcher.setLayout(null);
 		
@@ -69,9 +68,14 @@ public class TicketListWindow {
 		mntmNewItem.setText("Filter");
 		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(shlTicketwatcher, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(10, 10, 430, 590);
+		scrolledComposite.setBounds(10, 10, 430, 655);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
+		
+		Tree tree = new Tree(scrolledComposite, SWT.BORDER);
+		scrolledComposite.setContent(tree);
+		scrolledComposite.setMinSize(tree.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		TicketManager tm = new TicketManager(tree);
 		
 		
 	}
