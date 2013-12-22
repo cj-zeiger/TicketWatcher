@@ -1,6 +1,8 @@
 package com.zygr.ticketWatcher;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
@@ -8,17 +10,69 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 public class TicketManager {
-	private Tree masterTree;
 	private TicketDetailWindow tw;
-	
-	public TicketManager(Tree t){
-		masterTree = t;
-		addTickets(masterTree);
-		addSelection(masterTree);
+	private ArrayList<Tickets> tickets;
+	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
+	public TicketManager(){
+		
 	}
-	private void addSelection(Tree t){
+	public void addNewTickets(ArrayList<Tickets> ticketArray){
+		tickets = ticketArray;
+	}
+	private void loadData() 
+	{
+		tickets = new ArrayList<Tickets>();
+		try {
+			
+			//Document tickets = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			File input = new File("nctickets.html");
+			Document webPage = Jsoup.parse(input, "UTF-8");
+			Elements rows = webPage.select("tr");
+			for (Element element : rows){
+				Elements col = element.select("td");
+				int colIndex = 0;
+				Tickets holderTicket = new Tickets();
+				for (Element collums : col){
+					holderTicket.setAll(colIndex, collums.text());
+					colIndex++;
+				}
+				boolean clean = true;
+				for (int x = 0; x<11;x++){
+					if (holderTicket.getAll(x)==null || holderTicket.getAll(x).isEmpty())
+						clean = false;
+				}
+				if (clean)
+					tickets.add(holderTicket);
+			}
+			} catch (IOException e) {
+				System.out.println(e.toString());
+			}
+		
+	}
+	public void updateListUI(Tree t){
+		loadData();
+		//Adding Tickets as Tree Items
+		for (Tickets ticket: tickets){
+			TreeItem ticketItem = new TreeItem(t, SWT.DEFAULT);
+			ticketItem.setText(ticket.getAll(Tickets.INDEX_TICKETNUMBER) + " - " + ticket.getAll(Tickets.INDEX_ESCALATIONTIME));
+			ticketItem.setData("ticket", ticket);
+			for (int x = 0; x < 11; x++){
+				if (x!=6&&x!=7){
+					TreeItem sub = new TreeItem(ticketItem, SWT.DEFAULT);
+					sub.setText(ticket.info()[x]);
+					sub.setData(Integer.toString(x), ticket.info()[x]);
+					
+				}
+				
+			}
+		}
+		//Selection Listeners
 		t.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent e){
@@ -40,22 +94,6 @@ public class TicketManager {
 			}
 		});
 	}
-	private void addTickets(Tree t){
-		for (Tickets ticket: Main.ticketHolder){
-			TreeItem ticketItem = new TreeItem(t, SWT.DEFAULT);
-			ticketItem.setText(ticket.getAll(Tickets.INDEX_TICKETNUMBER));
-			ticketItem.setData("ticket", ticket);
-			for (int x = 0; x < 11; x++){
-				if (x!=6&&x!=7){
-					TreeItem sub = new TreeItem(ticketItem, SWT.DEFAULT);
-					sub.setText(ticket.info()[x]);
-					sub.setData(Integer.toString(x), ticket.info()[x]);
-					
-				}
-				
-			}
-		}
-	}
 	private void openCloudAccount(int customerNumber){
 		try {
 			Process openCloud = new ProcessBuilder("\\\\ncdomain\\clouddfs\\Cloudapp", "-"+customerNumber).start();
@@ -65,4 +103,20 @@ public class TicketManager {
 		}
 		
 	}
+	public ArrayList<String> getOwners(){
+		ArrayList<String> names = new ArrayList<String>();
+		for (Tickets ticket: tickets){
+			boolean unique = true;
+			String name = ticket.getOwner();
+			for (int x = 0; x < names.size(); x++){
+				if (name.equalsIgnoreCase(names.get(x))){
+					unique = false;
+				}
+			}
+			if (unique)
+				names.add(name);
+		}
+		return names;
+	}
+	
 }

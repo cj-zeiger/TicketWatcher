@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.custom.CTabItem;
+import org.eclipse.swt.graphics.Point;
 
 public class TicketDetailWindow {
 
@@ -39,11 +40,12 @@ public class TicketDetailWindow {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(1280, 720);
+		shell.setSize(1050, 720);
 		shell.setText("Ticket Viewer");
+		shell.setLocation(new Point(270,0));
 		
 		tabFolder = new TabFolder(shell, SWT.NONE);
-		tabFolder.setBounds(10, 10, 1244, 662);
+		tabFolder.setBounds(10, 10, shell.getClientArea().width - 20, shell.getClientArea().height - 20);
 		
 
 	}
