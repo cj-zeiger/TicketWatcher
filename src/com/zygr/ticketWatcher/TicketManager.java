@@ -55,8 +55,10 @@ public class TicketManager {
 			}
 		
 	}
-	public void updateListUI(Tree t){
+	public void updateListUI(Tree t, FilterResult fr){
 		loadData();
+		//Removed old tree items
+		t.removeAll();
 		//Adding Tickets as Tree Items
 		for (Tickets ticket: tickets){
 			TreeItem ticketItem = new TreeItem(t, SWT.DEFAULT);
@@ -72,6 +74,8 @@ public class TicketManager {
 				
 			}
 		}
+	}
+	public void addTreeSelection(Tree t){
 		//Selection Listeners
 		t.addSelectionListener(new SelectionAdapter(){
 			@Override
@@ -87,7 +91,8 @@ public class TicketManager {
 					if (tw==null){
 					tw = new TicketDetailWindow();
 					tw.open();
-					}
+				}
+				if (tw!=null)
 					tw.createNewTab((Tickets) ti.getData("ticket"));
 					
 				}
@@ -117,6 +122,21 @@ public class TicketManager {
 				names.add(name);
 		}
 		return names;
+	}
+	public ArrayList<String> getGroups(){
+		ArrayList<String> groups = new ArrayList<String>();
+		for (Tickets ticket: tickets){
+			boolean unique = true;
+			String name = ticket.getGroup();
+			for (int x = 0; x < groups.size(); x++){
+				if (name.equalsIgnoreCase(groups.get(x))){
+					unique = false;
+				}
+			}
+			if (unique)
+				groups.add(name);
+		}
+		return groups;
 	}
 	
 }

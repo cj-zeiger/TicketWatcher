@@ -21,17 +21,38 @@ public class FilterDialog extends Dialog {
 	protected Object result;
 	protected Shell shlFilter;
 	protected Composite composite;
+	private FilterResult fr;
 	private ArrayList<String> owners;
+	private ArrayList<String> groups;
+	private ArrayList<String> statuss;
+	private ArrayList<String> prios;
+	private String ownerFilter;
+	private String groupFilter;
+	private String statusFilter;
+	private String priorityFilter;
+	
 	
 	/**
 	 * Create the dialog.
 	 * @param parent
 	 * @param style
 	 */
-	public FilterDialog(Shell parent, int style, ArrayList<String> names) {
+	public FilterDialog(Shell parent, int style, ArrayList<String> owners,  ArrayList<String> groups) {
 		super(parent, style);
 		setText("Filter");
-		owners = names;
+		this.owners = owners;
+		this.groups = groups;
+		
+		statuss = new ArrayList<String>();
+		statuss.add("Waiting");
+		statuss.add("In Process");
+		statuss.add("Monitoring");
+		
+		prios = new ArrayList<String>();
+		prios.add("Major");
+		prios.add("Moderate");
+		prios.add("Informational");
+		
 	}
 
 	/**
@@ -48,7 +69,7 @@ public class FilterDialog extends Dialog {
 				display.sleep();
 			}
 		}
-		return result;
+		return fr;
 	}
 
 	/**
@@ -71,35 +92,51 @@ public class FilterDialog extends Dialog {
 		lowner.setBounds(10, 10, 57, 17);
 		lowner.setText("Owner:");
 		
-		Combo cowner = new Combo(composite, SWT.NONE);
+		final Combo cowner = new Combo(composite, SWT.NONE);
 		cowner.setBounds(73, 10, 317, 29);
+		for (String s : owners){
+			cowner.add(s);
+		}
 		
 		Label lstatus = new Label(composite, SWT.NONE);
 		lstatus.setBounds(10, 45, 57, 17);
 		lstatus.setText("Status:");
 		
-		Combo cstatus = new Combo(composite, SWT.NONE);
+		final Combo cstatus = new Combo(composite, SWT.NONE);
 		cstatus.setBounds(73, 45, 317, 29);
+		for (String s : statuss){
+			cstatus.add(s);
+		}
 		
 		Label lpriority = new Label(composite, SWT.NONE);
 		lpriority.setBounds(10, 80, 57, 17);
 		lpriority.setText("Priority:");
 		
-		Combo cpriority = new Combo(composite, SWT.NONE);
+		final Combo cpriority = new Combo(composite, SWT.NONE);
 		cpriority.setBounds(73, 80, 317, 29);
+		for (String s : prios){
+			cpriority.add(s);
+		}
 		
 		Label lgroup = new Label(composite, SWT.NONE);
 		lgroup.setText("Group:");
 		lgroup.setBounds(10, 115, 57, 17);
 		
-		Combo cgroup = new Combo(composite, SWT.NONE);
+		final Combo cgroup = new Combo(composite, SWT.NONE);
 		cgroup.setBounds(73, 115, 317, 29);
+		for (String s : groups){
+			cgroup.add(s);
+		}
 		
 		btnGo.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent t){
 				//close and send data
-				
+				 ownerFilter = cowner.getText();
+				 statusFilter = cstatus.getText();
+				 priorityFilter = cpriority.getText();
+				 groupFilter = cgroup.getText();
+				 fr = new FilterResult(groupFilter, statusFilter, priorityFilter, ownerFilter);
 				composite.dispose();
 				shlFilter.dispose();
 			}

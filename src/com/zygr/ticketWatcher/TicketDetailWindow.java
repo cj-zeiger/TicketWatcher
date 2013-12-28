@@ -42,7 +42,7 @@ public class TicketDetailWindow {
 		shell = new Shell();
 		shell.setSize(1050, 720);
 		shell.setText("Ticket Viewer");
-		shell.setLocation(new Point(270,0));
+		shell.setLocation(new Point(250,0));
 		
 		tabFolder = new TabFolder(shell, SWT.NONE);
 		tabFolder.setBounds(10, 10, shell.getClientArea().width - 20, shell.getClientArea().height - 20);
@@ -50,11 +50,13 @@ public class TicketDetailWindow {
 
 	}
 	public void createNewTab(Tickets t){
+		if (tabFolder != null){
 		TabItem ti = new TabItem(tabFolder, SWT.NONE);
 		ti.setText(t.getTicketNumber());
 		
 		Browser browser = new Browser(tabFolder, SWT.NONE);
 		ti.setControl(browser);
 		browser.setUrl("https://www.google.com/#q=" + t.getTicketNumber() + "&safe=off");
+		}
 	}
 }
