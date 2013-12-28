@@ -31,10 +31,12 @@ public class TicketListWindow {
 	 */
 	public TicketListWindow(TicketManager t){
 		ticketmanage = t;
+		
 	}
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		ticketmanage.setList(shlTicketwatcher);
 		shlTicketwatcher.open();
 		shlTicketwatcher.layout();
 		while (!shlTicketwatcher.isDisposed()) {
@@ -63,6 +65,7 @@ public class TicketListWindow {
 		filterItem.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent e){
+				
 				FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups());
 				fr = (FilterResult) fd.open();
 				updateList(fr);

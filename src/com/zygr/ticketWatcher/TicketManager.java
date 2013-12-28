@@ -8,6 +8,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
 import org.jsoup.Jsoup;
@@ -17,13 +18,17 @@ import org.jsoup.select.Elements;
 
 public class TicketManager {
 	private TicketDetailWindow tw;
+	private Shell ticketListWindow;
 	private ArrayList<Tickets> tickets;
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
 	public TicketManager(){
-		
 	}
 	public void addNewTickets(ArrayList<Tickets> ticketArray){
 		tickets = ticketArray;
+	}
+	public void setList(Shell tlw){
+		if (tlw!=null)
+			ticketListWindow = tlw;
 	}
 	private void loadData() 
 	{
@@ -81,21 +86,23 @@ public class TicketManager {
 			@Override
 			public void widgetSelected(SelectionEvent e){
 				TreeItem ti = (TreeItem) e.item;
-				if (ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER))!= null){
-					String customerNumber = (String) ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER));
-					customerNumber = customerNumber.replaceAll("[^\\d.]", "");
-					int number = Integer.parseInt(customerNumber);
-					openCloudAccount(number);
-				}
-				if(ti.getData("ticket")!=null){
-					if (tw==null){
-					tw = new TicketDetailWindow();
-					tw.open();
-				}
-				if (tw!=null)
-					tw.createNewTab((Tickets) ti.getData("ticket"));
+				if (!e.widget.isDisposed()){
+					if (ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER))!= null){
+						String customerNumber = (String) ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER));
+						customerNumber = customerNumber.replaceAll("[^\\d.]", "");
+						int number = Integer.parseInt(customerNumber);
+						openCloudAccount(number);
+					}
+					if(ti.getData("ticket")!=null){
+						if (tw==null){
+							tw = new TicketDetailWindow(ticketListWindow);
+							tw.open();
+						}
+						if (tw!=null)
+							tw.createNewTab((Tickets) ti.getData("ticket"));
 					
-				}
+					}
+			}
 			}
 		});
 	}

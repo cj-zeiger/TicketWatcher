@@ -59,21 +59,21 @@ public class Tickets extends Object{
 		switch (index){
 		case INDEX_TICKETNUMBER: setTicketNumber(ws(pString));
 		break;
-		case INDEX_STATUS: setStatus(ws(pString));
+		case INDEX_STATUS: setStatus(pString);
 		break;
-		case INDEX_PRIORITY: setPriority(ws(pString));
+		case INDEX_PRIORITY: setPriority(pString);
 		break;
-		case INDEX_CUSTOMER: setCustomer(ws(pString));
+		case INDEX_CUSTOMER: setCustomer(pString);
 		break;
-		case INDEX_ACCOUNT: setAccount(ws(pString));
+		case INDEX_ACCOUNT: setAccount(pString);
 		break;
-		case INDEX_SUBJECT: setSubject(ws(pString));
+		case INDEX_SUBJECT: setSubject(pString);
 		break;
-		case INDEX_OWNER: setOwner(ws(pString));
+		case INDEX_OWNER: setOwner(pString);
 		break;
-		case INDEX_GROUP: setGroup(ws(pString));
+		case INDEX_GROUP: setGroup(pString);
 		break;
-		case INDEX_ESCALATIONTIME: setEscalationTime(ws(pString));
+		case INDEX_ESCALATIONTIME: setEscalationTime(pString);
 		break;
 		default:
 		}
@@ -94,40 +94,40 @@ public class Tickets extends Object{
 	}
 	public void setTicketNumber(String pticketNumber){
 		
-		ticketNumber = ws(pticketNumber);
+		ticketNumber = pticketNumber;
 		}
 	public void setStatus(String pticketStatus){
 		
-		ticketStatus = ws(pticketStatus);
+		ticketStatus = pticketStatus;
 		}
 	public void setPriority(String pticketPriority){
 		
-		ticketPriority = ws(pticketPriority);
+		ticketPriority = pticketPriority;
 		}
 	public void setCustomer(String pticketCustomer){
 		
-		ticketCustomer = ws(pticketCustomer);
+		ticketCustomer = pticketCustomer;
 		}
 	public void setAccount(String paccountNumber){
 	
-		accountNumber = ws(paccountNumber);
+		accountNumber = paccountNumber;
 		}
 	public void setSubject(String pticketSubject){
 	
-		ticketSubject = ws(pticketSubject);
+		ticketSubject = pticketSubject;
 		}
 	public void setOwner(String pticketOwner){
 	
-		ticketOwner = ws(pticketOwner);
+		ticketOwner = pticketOwner;
 	}
 	public void setGroup(String pticketGroup){
 		
-		ticketGroup = ws(pticketGroup);
+		ticketGroup = pticketGroup;
 		}
 
 	public void setEscalationTime(String pticketEscalationTime){
 		
-		ticketEscalationTime = ws(pticketEscalationTime);
+		ticketEscalationTime = pticketEscalationTime;
 		}
 	
 	//Gets
