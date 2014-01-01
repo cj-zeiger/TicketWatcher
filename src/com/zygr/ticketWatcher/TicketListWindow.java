@@ -65,7 +65,7 @@ public class TicketListWindow {
 		filterItem.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent e){
-				
+				ticketmanage.refreash();
 				FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups());
 				fr = (FilterResult) fd.open();
 				ticketmanage.newTickets(fr);

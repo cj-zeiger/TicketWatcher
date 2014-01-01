@@ -23,7 +23,7 @@ public class TicketManager {
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
 	private Tree t;
 	public TicketManager(){
-		loadData();
+		tickets = loadData();
 	}
 	
 	public void setList(Shell tlw){
@@ -33,11 +33,10 @@ public class TicketManager {
 	public void setTree(Tree tree){
 		t = tree;
 	}
-	private void loadData() 
-	{
-		tickets = new ArrayList<Tickets>();
+	public ArrayList<Tickets> loadData() {
+		
+		ArrayList<Tickets> methodTickets = new ArrayList<Tickets>();
 		try {
-			
 			//Document tickets = Jsoup.connect(URL_NETCARRIER_TICKET).get();
 			File input = new File("nctickets.html");
 			Document webPage = Jsoup.parse(input, "UTF-8");
@@ -56,15 +55,15 @@ public class TicketManager {
 						clean = false;
 				}
 				if (clean)
-					tickets.add(holderTicket);
+					methodTickets.add(holderTicket);
 			}
 			} catch (IOException e) {
 				System.out.println(e.toString());
 			}
+		return methodTickets;
 		
 	}
 	public void updateListUI(){
-		
 		//Removed old tree items
 		t.removeAll();
 		//Adding Tickets as Tree Items
@@ -84,34 +83,32 @@ public class TicketManager {
 		}
 	}
 	public void newTickets(FilterResult filterResult){
-		ArrayList<Tickets> newTickets = new ArrayList<Tickets>();
-		for (Tickets tk : tickets){
-			boolean cleanTicket = true;
-			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
-			if (filterResult.group != null && !filterResult.group.equals("")){
-				if (!tk.getGroup().equals(filterResult.group))
-					cleanTicket = false;
+		ArrayList<Tickets> allTickets = loadData();
+		ArrayList<Tickets> filteredTickets = new ArrayList<Tickets>();
+		if (filterResult != null){
+			for (Tickets tk : allTickets){
+				boolean cleanTicket = true;
+				if (filterResult.group != null && !filterResult.group.equals("")){
+					if (!tk.getGroup().equals(filterResult.group))
+						cleanTicket = false;
+				}
+				if (filterResult.priority != null && !filterResult.priority.equals("")){
+					if (!tk.getPriority().equals(filterResult.priority))
+						cleanTicket = false;
+				}
+				if (filterResult.owner != null && !filterResult.owner.equals("")){
+					if (!tk.getOwner().equals(filterResult.owner))
+						cleanTicket = false;
+				}
+				if (filterResult.status != null && !filterResult.status.equals("")){
+					if (!tk.getStatus().equals(filterResult.status))
+						cleanTicket = false;
+				}
+				if(cleanTicket)
+					filteredTickets.add(tk);
 			}
-			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
-			if (filterResult.priority != null && !filterResult.priority.equals("")){
-				if (!tk.getPriority().equals(filterResult.priority))
-					cleanTicket = false;
-			}
-			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
-			if (filterResult.owner != null && !filterResult.owner.equals("")){
-				if (!tk.getOwner().equals(filterResult.owner))
-					cleanTicket = false;
-			}
-			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
-			if (filterResult.status != null && !filterResult.status.equals("")){
-				if (!tk.getStatus().equals(filterResult.status))
-					cleanTicket = false;
-			}
-			if(cleanTicket)
-				newTickets.add(tk);
-			
 		}
-		tickets = newTickets;
+		tickets = filteredTickets;
 		
 	}
 	public void addTreeSelection(){
@@ -178,6 +175,9 @@ public class TicketManager {
 				groups.add(name);
 		}
 		return groups;
+	}
+	public void refreash(){
+		tickets = loadData();
 	}
 	
 }
