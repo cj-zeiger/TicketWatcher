@@ -21,14 +21,17 @@ public class TicketManager {
 	private Shell ticketListWindow;
 	private ArrayList<Tickets> tickets;
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
+	private Tree t;
 	public TicketManager(){
+		loadData();
 	}
-	public void addNewTickets(ArrayList<Tickets> ticketArray){
-		tickets = ticketArray;
-	}
+	
 	public void setList(Shell tlw){
 		if (tlw!=null)
 			ticketListWindow = tlw;
+	}
+	public void setTree(Tree tree){
+		t = tree;
 	}
 	private void loadData() 
 	{
@@ -60,8 +63,8 @@ public class TicketManager {
 			}
 		
 	}
-	public void updateListUI(Tree t, FilterResult fr){
-		loadData();
+	public void updateListUI(){
+		
 		//Removed old tree items
 		t.removeAll();
 		//Adding Tickets as Tree Items
@@ -80,7 +83,38 @@ public class TicketManager {
 			}
 		}
 	}
-	public void addTreeSelection(Tree t){
+	public void newTickets(FilterResult filterResult){
+		ArrayList<Tickets> newTickets = new ArrayList<Tickets>();
+		for (Tickets tk : tickets){
+			boolean cleanTicket = true;
+			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
+			if (filterResult.group != null && !filterResult.group.equals("")){
+				if (!tk.getGroup().equals(filterResult.group))
+					cleanTicket = false;
+			}
+			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
+			if (filterResult.priority != null && !filterResult.priority.equals("")){
+				if (!tk.getPriority().equals(filterResult.priority))
+					cleanTicket = false;
+			}
+			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
+			if (filterResult.owner != null && !filterResult.owner.equals("")){
+				if (!tk.getOwner().equals(filterResult.owner))
+					cleanTicket = false;
+			}
+			//Checks Group, sets cleanTicket to false if the ticket does not match the FilterResult
+			if (filterResult.status != null && !filterResult.status.equals("")){
+				if (!tk.getStatus().equals(filterResult.status))
+					cleanTicket = false;
+			}
+			if(cleanTicket)
+				newTickets.add(tk);
+			
+		}
+		tickets = newTickets;
+		
+	}
+	public void addTreeSelection(){
 		//Selection Listeners
 		t.addSelectionListener(new SelectionAdapter(){
 			@Override

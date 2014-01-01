@@ -12,4 +12,5 @@ public class FilterResult {
 		this.priority = priority;
 		this.owner = owner;
 	}
+
 }

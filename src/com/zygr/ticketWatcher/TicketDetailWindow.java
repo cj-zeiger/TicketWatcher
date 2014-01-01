@@ -54,6 +54,7 @@ public class TicketDetailWindow {
 		if (tabFolder != null){
 		TabItem ti = new TabItem(tabFolder, SWT.NONE);
 		ti.setText(t.getTicketNumber());
+		//ti.addListener(SWT.);
 		
 		Browser browser = new Browser(tabFolder, SWT.NONE);
 		ti.setControl(browser);

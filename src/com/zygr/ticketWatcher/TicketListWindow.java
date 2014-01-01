@@ -68,8 +68,8 @@ public class TicketListWindow {
 				
 				FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups());
 				fr = (FilterResult) fd.open();
-				updateList(fr);
-				
+				ticketmanage.newTickets(fr);
+				ticketmanage.updateListUI();
 			}
 		});
 		
@@ -81,13 +81,11 @@ public class TicketListWindow {
 		Tree tree = new Tree(scrolledComposite, SWT.BORDER);
 		scrolledComposite.setContent(tree);
 		scrolledComposite.setMinSize(tree.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		ticketmanage.updateListUI(tree, fr);
-		ticketmanage.addTreeSelection(tree);
+		ticketmanage.setTree(tree);
+		ticketmanage.updateListUI();
+		ticketmanage.addTreeSelection();
 		
 		
-		
-	}
-	private void updateList(FilterResult filterResult){
 		
 	}
 }
