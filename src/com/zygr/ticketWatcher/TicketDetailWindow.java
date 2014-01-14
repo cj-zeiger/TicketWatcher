@@ -43,7 +43,7 @@ public class TicketDetailWindow {
 		shell = new Shell(listWindow);
 		shell.setSize(1050, 720);
 		shell.setText("Ticket Viewer");
-		shell.setLocation(new Point(270,0));
+		shell.setLocation(new Point(210,0));
 		
 		tabFolder = new TabFolder(shell, SWT.NONE);
 		tabFolder.setBounds(10, 10, shell.getClientArea().width - 20, shell.getClientArea().height - 20);
