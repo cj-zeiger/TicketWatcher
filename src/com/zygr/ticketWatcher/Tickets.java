@@ -180,6 +180,7 @@ public class Tickets extends Object{
 		return infoString;
 	}
 	
+	
 	public String formatText(){
 		
 		String formatedInfo = ("Ticket Number: " + ticketNumber+
@@ -197,7 +198,9 @@ public class Tickets extends Object{
 		return formatedInfo;
 	}
 	public String ws(String s){
-		return s.replaceAll(whitespace_charclass + "+", "");
+		s = s.replaceAll(whitespace_charclass+"+$","");
+		s = s.replaceAll("^"+whitespace_charclass+"+","");
+		return s;
 	}
 	
 }

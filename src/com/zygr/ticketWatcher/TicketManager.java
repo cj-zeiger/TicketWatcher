@@ -44,7 +44,23 @@ public class TicketManager {
 			for (Element element : rows){
 				Elements col = element.select("td");
 				int colIndex = 0;
-				Tickets holderTicket = new Tickets();
+				//check clean
+				boolean clean = true;
+				for (Element item: col){
+					String test = item.text();
+					if (item.text().equals("") || item.text().isEmpty() || item.text() == null)
+						clean = false;
+				}
+				if(clean){
+					Tickets holderTicket = new Tickets();
+					for (Element collums : col){
+						holderTicket.setAll(colIndex, collums.text());
+						colIndex++;
+					}
+					methodTickets.add(holderTicket);
+				}
+				/**
+				
 				for (Element collums : col){
 					holderTicket.setAll(colIndex, collums.text());
 					colIndex++;
@@ -55,7 +71,10 @@ public class TicketManager {
 						clean = false;
 				}
 				if (clean)
-					methodTickets.add(holderTicket);
+					
+				*/
+				
+				String test = '/"';
 			}
 			} catch (IOException e) {
 				System.out.println(e.toString());
