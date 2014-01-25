@@ -73,8 +73,12 @@ public class TicketListWindow {
 			}
 		});
 		
+		Menu sortItem = new Menu(menu);
+		
+		
+		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(shlTicketwatcher, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(10, 10, shlTicketwatcher.getClientArea().width - 15, shlTicketwatcher.getClientArea().height - 15);
+		scrolledComposite.setBounds(10, 10, shlTicketwatcher.getClientArea().width - 15, shlTicketwatcher.getClientArea().height - 35);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		
