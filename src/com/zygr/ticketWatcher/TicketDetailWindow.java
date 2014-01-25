@@ -58,7 +58,9 @@ public class TicketDetailWindow {
 		
 		Browser browser = new Browser(tabFolder, SWT.NONE);
 		ti.setControl(browser);
-		browser.setUrl("https://www.google.com/#q=" + t.getTicketNumber() + "&safe=off");
+		//browser.setUrl("https://www.google.com/#q=" + t.getTicketNumber() + "&safe=off");
+		browser.setUrl("http://tickets/tickets/viewticket.asp?id=" + t.getTicketNumber().replaceAll("[a-zA-Z]+", ""));
+		
 		}
 	}
 }

@@ -37,9 +37,9 @@ public class TicketManager {
 		
 		ArrayList<Tickets> methodTickets = new ArrayList<Tickets>();
 		try {
-			//Document tickets = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			File input = new File("nctickets.html");
-			Document webPage = Jsoup.parse(input, "UTF-8");
+			Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			//File input = new File("nctickets.html");
+			//Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements rows = webPage.select("tr");
 			for (Element element : rows){
 				Elements col = element.select("td");
@@ -73,6 +73,7 @@ public class TicketManager {
 			ticketItem.setData("ticket", ticket);
 			for (int x = 0; x < 11; x++){
 				if (x!=6&&x!=7){
+					//Adds tree items of ticket data to the ticket tree items, adds strings ass tree item data
 					TreeItem sub = new TreeItem(ticketItem, SWT.DEFAULT);
 					sub.setText(ticket.info()[x]);
 					sub.setData(Integer.toString(x), ticket.info()[x]);
@@ -82,6 +83,7 @@ public class TicketManager {
 			}
 		}
 	}
+	//Loads new tickets from web source, checks if there are filter results available and filters, finally sets object tickst to the result.
 	public void newTickets(FilterResult filterResult){
 		ArrayList<Tickets> allTickets = loadData();
 		ArrayList<Tickets> filteredTickets = new ArrayList<Tickets>();
@@ -118,11 +120,12 @@ public class TicketManager {
 			public void widgetSelected(SelectionEvent e){
 				TreeItem ti = (TreeItem) e.item;
 				if (!e.widget.isDisposed()){
-					if (ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER))!= null){
-						String customerNumber = (String) ti.getData(Integer.toString(Tickets.INDEX_CUSTOMER));
-						customerNumber = customerNumber.replaceAll("[^\\d.]", "");
-						int number = Integer.parseInt(customerNumber);
-						openCloudAccount(number);
+					if (ti.getData(""+Tickets.INDEX_CUSTOMER) != null || ti.getData(""+Tickets.INDEX_ACCOUNT) != null){
+						Tickets ticket = (Tickets) ti.getParent().getData("ticket");
+						String customerNumber = ticket.getCustomer();
+						String accountNumber = ticket.getAccount();
+						System.out.println("cust: " + customerNumber + " account: " + accountNumber);
+						openCloudAccount(Integer.parseInt(customerNumber), Integer.parseInt(accountNumber));
 					}
 					if(ti.getData("ticket")!=null){
 						if (tw==null){
@@ -137,9 +140,10 @@ public class TicketManager {
 			}
 		});
 	}
-	private void openCloudAccount(int customerNumber){
+	private void openCloudAccount(int customerNumber, int accountNumber){
 		try {
-			Process openCloud = new ProcessBuilder("\\\\ncdomain\\clouddfs\\Cloudapp", "-"+customerNumber).start();
+			System.out.println(customerNumber);
+			Process openCloud = new ProcessBuilder("N:\\Cloud.exe","-aid", "" + customerNumber).start();
 			
 		} catch (IOException e) {
 			System.out.println(e.toString());
