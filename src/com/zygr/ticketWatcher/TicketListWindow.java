@@ -26,6 +26,7 @@ public class TicketListWindow {
 	protected Shell shlTicketwatcher;
 	private TicketManager ticketmanage;
 	private FilterResult fr = null;
+	private boolean openDiag;
 	/**
 	 * Open the window.
 	 */
@@ -66,17 +67,16 @@ public class TicketListWindow {
 			@Override
 			public void widgetSelected(SelectionEvent e){
 				ticketmanage.refreash();
-				FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups());
-				fr = (FilterResult) fd.open();
-				ticketmanage.newTickets(fr);
-				ticketmanage.updateListUI();
+				if(!openDiag){
+					openDiag = true;
+					FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups());
+					fr = (FilterResult) fd.open();
+					ticketmanage.newTickets(fr);
+					ticketmanage.updateListUI();
+					openDiag = false;
+				}
 			}
 		});
-		
-		Menu sortItem = new Menu(menu);
-		
-		
-		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(shlTicketwatcher, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setBounds(10, 10, shlTicketwatcher.getClientArea().width - 15, shlTicketwatcher.getClientArea().height - 35);
 		scrolledComposite.setExpandHorizontal(true);
