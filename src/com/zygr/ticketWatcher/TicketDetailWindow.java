@@ -50,7 +50,7 @@ public class TicketDetailWindow {
 		
 
 	}
-	public void createNewTab(Tickets t){
+	public void createNewTab(Ticket t){
 		if (tabFolder != null){
 		TabItem ti = new TabItem(tabFolder, SWT.NONE);
 		ti.setText(t.getTicketNumber());
@@ -60,7 +60,12 @@ public class TicketDetailWindow {
 		ti.setControl(browser);
 		//browser.setUrl("https://www.google.com/#q=" + t.getTicketNumber() + "&safe=off");
 		browser.setUrl("http://tickets/tickets/viewticket.asp?id=" + t.getTicketNumber().replaceAll("[a-zA-Z]+", ""));
-		
 		}
+	}
+	public boolean isDisposed(){
+		if (shell.isDisposed() || tabFolder.isDisposed())
+			return true;
+		else
+			return false;
 	}
 }

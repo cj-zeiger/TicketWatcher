@@ -1,6 +1,6 @@
 package com.zygr.ticketWatcher;
 
-public class Tickets extends Object{
+public class Ticket extends Object{
 		private String ticketNumber;
 		private String ticketStatus;
 		private String ticketPriority;
@@ -52,7 +52,7 @@ public class Tickets extends Object{
 
 		
 	//Constructor
-	public Tickets(){
+	public Ticket(){
 	}
 	//Sets
 	public void setAll(int index, String pString){

@@ -19,7 +19,7 @@ import org.jsoup.select.Elements;
 public class TicketManager {
 	private TicketDetailWindow tw;
 	private Shell ticketListWindow;
-	private ArrayList<Tickets> tickets;
+	private ArrayList<Ticket> tickets;
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
 	private Tree t;
 	public TicketManager(){
@@ -33,62 +33,49 @@ public class TicketManager {
 	public void setTree(Tree tree){
 		t = tree;
 	}
-	public ArrayList<Tickets> loadData() {
-		
-		ArrayList<Tickets> methodTickets = new ArrayList<Tickets>();
+	public ArrayList<Ticket> loadData() {
+		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try {
-			Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			//File input = new File("nctickets.html");
-			//Document webPage = Jsoup.parse(input, "UTF-8");
-			Elements rows = webPage.select("tr");
-			for (Element element : rows){
-				Elements col = element.select("td");
-				int colIndex = 0;
-				//check clean
-				boolean clean = true;
-				for (Element item: col){
-					String test = item.text();
-					if (item.text().equals("") || item.text().isEmpty() || item.text() == null)
-						clean = false;
-				}
-				if(clean){
-					Tickets holderTicket = new Tickets();
-					for (Element collums : col){
-						holderTicket.setAll(colIndex, collums.text());
-						colIndex++;
-					}
-					methodTickets.add(holderTicket);
-				}
-				/**
-				
-				for (Element collums : col){
-					holderTicket.setAll(colIndex, collums.text());
-					colIndex++;
-				}
-				boolean clean = true;
-				for (int x = 0; x<11;x++){
-					if (holderTicket.getAll(x)==null || holderTicket.getAll(x).isEmpty())
-						clean = false;
-				}
-				if (clean)
-					
-				*/
-				
-				String test = '/"';
-			}
-			} catch (IOException e) {
-				System.out.println(e.toString());
-			}
-		return methodTickets;
+			//Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			File input = new File("nctickets.html");
+			Document webPage = Jsoup.parse(input, "UTF-8");
+			Elements allRows = webPage.select("tr");
+			ticketArray = findTickets(allRows);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return ticketArray;
 		
+	}
+	private ArrayList<Ticket> findTickets(Elements allRows){
+		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
+		for (Element singleRow: allRows){
+			Ticket holdingTicket = new Ticket();
+			boolean cleanTicket = true;
+			Elements singleCollum = singleRow.select("td");
+			int index = 0;
+			for (Element singleCell: singleCollum){
+				String cellText = singleCell.text();
+				holdingTicket.setAll(index, cellText);
+				if (cellText.equals("")||cellText.isEmpty()||cellText==null){
+					cleanTicket = false;
+					break;
+				}
+				index++;
+			}
+			if (cleanTicket && index >=11){
+				ticketArray.add(holdingTicket);
+			}
+		}
+		return ticketArray;
 	}
 	public void updateListUI(){
 		//Removed old tree items
 		t.removeAll();
 		//Adding Tickets as Tree Items
-		for (Tickets ticket: tickets){
+		for (Ticket ticket: tickets){
 			TreeItem ticketItem = new TreeItem(t, SWT.DEFAULT);
-			ticketItem.setText(ticket.getAll(Tickets.INDEX_TICKETNUMBER) + " - " + ticket.getAll(Tickets.INDEX_ESCALATIONTIME));
+			ticketItem.setText(ticket.getAll(Ticket.INDEX_TICKETNUMBER) + " - " + ticket.getAll(Ticket.INDEX_ESCALATIONTIME));
 			ticketItem.setData("ticket", ticket);
 			for (int x = 0; x < 11; x++){
 				if (x!=6&&x!=7){
@@ -104,10 +91,10 @@ public class TicketManager {
 	}
 	//Loads new tickets from web source, checks if there are filter results available and filters, finally sets object tickst to the result.
 	public void newTickets(FilterResult filterResult){
-		ArrayList<Tickets> allTickets = loadData();
-		ArrayList<Tickets> filteredTickets = new ArrayList<Tickets>();
+		ArrayList<Ticket> allTickets = loadData();
+		ArrayList<Ticket> filteredTickets = new ArrayList<Ticket>();
 		if (filterResult != null){
-			for (Tickets tk : allTickets){
+			for (Ticket tk : allTickets){
 				boolean cleanTicket = true;
 				if (filterResult.group != null && !filterResult.group.equals("")){
 					if (!tk.getGroup().equals(filterResult.group))
@@ -139,20 +126,20 @@ public class TicketManager {
 			public void widgetSelected(SelectionEvent e){
 				TreeItem ti = (TreeItem) e.item;
 				if (!e.widget.isDisposed()){
-					if (ti.getData(""+Tickets.INDEX_CUSTOMER) != null || ti.getData(""+Tickets.INDEX_ACCOUNT) != null){
-						Tickets ticket = (Tickets) ti.getParent().getData("ticket");
+					if (ti.getData(""+Ticket.INDEX_CUSTOMER) != null || ti.getData(""+Ticket.INDEX_ACCOUNT) != null){
+						Ticket ticket = (Ticket) ti.getParent().getData("ticket");
 						String customerNumber = ticket.getCustomer();
 						String accountNumber = ticket.getAccount();
 						System.out.println("cust: " + customerNumber + " account: " + accountNumber);
 						openCloudAccount(Integer.parseInt(customerNumber), Integer.parseInt(accountNumber));
 					}
 					if(ti.getData("ticket")!=null){
-						if (tw==null){
+						if (tw==null || tw.isDisposed()){
 							tw = new TicketDetailWindow(ticketListWindow);
 							tw.open();
 						}
-						if (tw!=null)
-							tw.createNewTab((Tickets) ti.getData("ticket"));
+						if (tw!=null && !tw.isDisposed())
+							tw.createNewTab((Ticket) ti.getData("ticket"));
 					
 					}
 			}
@@ -171,7 +158,7 @@ public class TicketManager {
 	}
 	public ArrayList<String> getOwners(){
 		ArrayList<String> names = new ArrayList<String>();
-		for (Tickets ticket: tickets){
+		for (Ticket ticket: tickets){
 			boolean unique = true;
 			String name = ticket.getOwner();
 			for (int x = 0; x < names.size(); x++){
@@ -186,7 +173,7 @@ public class TicketManager {
 	}
 	public ArrayList<String> getGroups(){
 		ArrayList<String> groups = new ArrayList<String>();
-		for (Tickets ticket: tickets){
+		for (Ticket ticket: tickets){
 			boolean unique = true;
 			String name = ticket.getGroup();
 			for (int x = 0; x < groups.size(); x++){
