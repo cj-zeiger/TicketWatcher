@@ -41,7 +41,7 @@ public class TicketDetailWindow {
 	 */
 	protected void createContents() {
 		shell = new Shell(listWindow);
-		shell.setSize(1050, 720);
+		shell.setSize(1100, 720);
 		shell.setText("Ticket Viewer");
 		shell.setLocation(new Point(210,0));
 		

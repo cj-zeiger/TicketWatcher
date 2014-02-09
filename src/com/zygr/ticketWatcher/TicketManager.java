@@ -36,9 +36,9 @@ public class TicketManager {
 	public ArrayList<Ticket> loadData() {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try {
-			//Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			File input = new File("nctickets.html");
-			Document webPage = Jsoup.parse(input, "UTF-8");
+			Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			//File input = new File("nctickets.html");
+			//Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements allRows = webPage.select("tr");
 			ticketArray = findTickets(allRows);
 		} catch (IOException e) {
@@ -127,7 +127,9 @@ public class TicketManager {
 				TreeItem ti = (TreeItem) e.item;
 				if (!e.widget.isDisposed()){
 					if (ti.getData(""+Ticket.INDEX_CUSTOMER) != null || ti.getData(""+Ticket.INDEX_ACCOUNT) != null){
-						Ticket ticket = (Ticket) ti.getParent().getData("ticket");
+						Object test1 = ti.getData();
+						Object test2 = ti.getParent();
+						Ticket ticket = (Ticket) ti.getData("ticket");
 						String customerNumber = ticket.getCustomer();
 						String accountNumber = ticket.getAccount();
 						System.out.println("cust: " + customerNumber + " account: " + accountNumber);
@@ -137,6 +139,7 @@ public class TicketManager {
 						if (tw==null || tw.isDisposed()){
 							tw = new TicketDetailWindow(ticketListWindow);
 							tw.open();
+							
 						}
 						if (tw!=null && !tw.isDisposed())
 							tw.createNewTab((Ticket) ti.getData("ticket"));
