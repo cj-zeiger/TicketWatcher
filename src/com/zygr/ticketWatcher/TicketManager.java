@@ -17,37 +17,34 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class TicketManager {
-	private TicketDetailWindow tw;
-	private Shell ticketListWindow;
 	private ArrayList<Ticket> tickets;
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
-	private Tree t;
+	private FilterResult mFilterResult;
 	public TicketManager(){
 		tickets = loadData();
 	}
 	
-	public void setList(Shell tlw){
-		if (tlw!=null)
-			ticketListWindow = tlw;
+	public void setFilterResult(FilterResult fr){
+		mFilterResult = fr;
 	}
-	public void setTree(Tree tree){
-		t = tree;
+	public ArrayList<Ticket> getTickets(){
+		return tickets;
 	}
 	public ArrayList<Ticket> loadData() {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try {
-			//Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			File input = new File("nctickets.html");
-			Document webPage = Jsoup.parse(input, "UTF-8");
+			Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			//File input = new File("nctickets.html");
+			//Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements allRows = webPage.select("tr");
-			ticketArray = findTickets(allRows);
+			ticketArray = findTicketsFromHTML(allRows);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return ticketArray;
 		
 	}
-	private ArrayList<Ticket> findTickets(Elements allRows){
+	private ArrayList<Ticket> findTicketsFromHTML(Elements allRows){
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		for (Element singleRow: allRows){
 			Ticket holdingTicket = new Ticket();
@@ -69,56 +66,39 @@ public class TicketManager {
 		}
 		return ticketArray;
 	}
-	public void updateListUI(){
-		//Removed old tree items
-		t.removeAll();
-		//Adding Tickets as Tree Items
-		for (Ticket ticket: tickets){
-			TreeItem ticketItem = new TreeItem(t, SWT.DEFAULT);
-			ticketItem.setText(ticket.getAll(Ticket.INDEX_TICKETNUMBER) + " - " + ticket.getAll(Ticket.INDEX_ESCALATIONTIME));
-			ticketItem.setData("ticket", ticket);
-			for (int x = 0; x < 11; x++){
-				if (x!=6&&x!=7){
-					//Adds tree items of ticket data to the ticket tree items, adds strings ass tree item data
-					TreeItem sub = new TreeItem(ticketItem, SWT.DEFAULT);
-					sub.setText(ticket.info()[x]);
-					sub.setData(Integer.toString(x), ticket.info()[x]);
-					
-				}
-				
-			}
-		}
-	}
+	
 	//Loads new tickets from web source, checks if there are filter results available and filters, finally sets object tickst to the result.
-	public void newTickets(FilterResult filterResult){
-		ArrayList<Ticket> allTickets = loadData();
-		ArrayList<Ticket> filteredTickets = new ArrayList<Ticket>();
-		if (filterResult != null){
-			for (Ticket tk : allTickets){
-				boolean cleanTicket = true;
-				if (filterResult.group != null && !filterResult.group.equals("")){
-					if (!tk.getGroup().equals(filterResult.group))
-						cleanTicket = false;
+	public void refreshFilteredTickets(){
+		if(mFilterResult!=null){
+			ArrayList<Ticket> allTickets = loadData();
+			ArrayList<Ticket> filteredTickets = new ArrayList<Ticket>();
+			if (mFilterResult != null){
+				for (Ticket tk : allTickets){
+					boolean cleanTicket = true;
+					if (mFilterResult.group != null && !mFilterResult.group.equals("")){
+						if (!tk.getGroup().equals(mFilterResult.group))
+							cleanTicket = false;
+					}
+					if (mFilterResult.priority != null && !mFilterResult.priority.equals("")){
+						if (!tk.getPriority().equals(mFilterResult.priority))
+							cleanTicket = false;
+					}
+					if (mFilterResult.owner != null && !mFilterResult.owner.equals("")){
+						if (!tk.getOwner().equals(mFilterResult.owner))
+							cleanTicket = false;
+					}
+					if (mFilterResult.status != null && !mFilterResult.status.equals("")){
+						if (!tk.getStatus().equals(mFilterResult.status))
+							cleanTicket = false;
+					}
+					if(cleanTicket)
+						filteredTickets.add(tk);
 				}
-				if (filterResult.priority != null && !filterResult.priority.equals("")){
-					if (!tk.getPriority().equals(filterResult.priority))
-						cleanTicket = false;
-				}
-				if (filterResult.owner != null && !filterResult.owner.equals("")){
-					if (!tk.getOwner().equals(filterResult.owner))
-						cleanTicket = false;
-				}
-				if (filterResult.status != null && !filterResult.status.equals("")){
-					if (!tk.getStatus().equals(filterResult.status))
-						cleanTicket = false;
-				}
-				if(cleanTicket)
-					filteredTickets.add(tk);
 			}
+			tickets = filteredTickets;
 		}
-		tickets = filteredTickets;
-		
 	}
+	/**
 	public void addTreeSelection(){
 		//Selection Listeners
 		t.addSelectionListener(new SelectionAdapter(){
@@ -149,6 +129,7 @@ public class TicketManager {
 			}
 		});
 	}
+	**/
 	private void openCloudAccount(int customerNumber, int accountNumber){
 		try {
 			System.out.println(customerNumber);
@@ -189,8 +170,11 @@ public class TicketManager {
 		}
 		return groups;
 	}
-	public void refreash(){
+	public void refresh(){
 		tickets = loadData();
+	}
+	public FilterResult getFilterResult(){
+		return mFilterResult;
 	}
 	
 }

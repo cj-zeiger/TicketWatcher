@@ -30,6 +30,7 @@ public class FilterDialog extends Dialog {
 	private String groupFilter;
 	private String statusFilter;
 	private String priorityFilter;
+	private FilterResult existingFilterResult;
 	
 	
 	/**
@@ -37,7 +38,7 @@ public class FilterDialog extends Dialog {
 	 * @param parent
 	 * @param style
 	 */
-	public FilterDialog(Shell parent, int style, ArrayList<String> owners,  ArrayList<String> groups) {
+	public FilterDialog(Shell parent, int style, ArrayList<String> owners,  ArrayList<String> groups,FilterResult existingResult) {
 		super(parent, style);
 		setText("Filter");
 		this.owners = owners;
@@ -52,6 +53,9 @@ public class FilterDialog extends Dialog {
 		prios.add("Major");
 		prios.add("Moderate");
 		prios.add("Informational");
+		
+		existingFilterResult = existingResult;
+		
 		
 	}
 
@@ -94,6 +98,7 @@ public class FilterDialog extends Dialog {
 		
 		final Combo cowner = new Combo(composite, SWT.NONE);
 		cowner.setBounds(73, 10, 317, 29);
+		cowner.setText(existingFilterResult.owner);
 		for (String s : owners){
 			cowner.add(s);
 		}
@@ -104,6 +109,7 @@ public class FilterDialog extends Dialog {
 		
 		final Combo cstatus = new Combo(composite, SWT.NONE);
 		cstatus.setBounds(73, 45, 317, 29);
+		cstatus.setText(existingFilterResult.status);
 		for (String s : statuss){
 			cstatus.add(s);
 		}
@@ -114,6 +120,7 @@ public class FilterDialog extends Dialog {
 		
 		final Combo cpriority = new Combo(composite, SWT.NONE);
 		cpriority.setBounds(73, 80, 317, 29);
+		cpriority.setText(existingFilterResult.priority);
 		for (String s : prios){
 			cpriority.add(s);
 		}
@@ -124,6 +131,7 @@ public class FilterDialog extends Dialog {
 		
 		final Combo cgroup = new Combo(composite, SWT.NONE);
 		cgroup.setBounds(73, 115, 317, 29);
+		cgroup.setText(existingFilterResult.group);
 		for (String s : groups){
 			cgroup.add(s);
 		}

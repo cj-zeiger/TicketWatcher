@@ -80,15 +80,15 @@ public class Ticket extends Object{
 	}
 	public String getAll(int index){
 		switch (index){
-		case INDEX_TICKETNUMBER: return getTicketNumber();
-		case INDEX_STATUS: return getStatus();
-		case INDEX_PRIORITY: return getPriority();
-		case INDEX_CUSTOMER: return getCustomer();
-		case INDEX_ACCOUNT: return getAccount();
-		case INDEX_SUBJECT: return getSubject();
-		case INDEX_OWNER: return getOwner();
-		case INDEX_GROUP: return getGroup();
-		case INDEX_ESCALATIONTIME: return getEscalationTime();
+		case 0: return getTicketNumber();
+		case 1: return getStatus();
+		case 2: return getPriority();
+		case 3: return getCustomer();
+		case 4: return getAccount();
+		case 5: return getSubject();
+		case 6: return getOwner();
+		case 7: return getGroup();
+		case 8: return getEscalationTime();
 		default: return "blank string";
 		}
 	}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Menu;
@@ -27,6 +28,7 @@ public class TicketListWindow {
 	private TicketManager ticketmanage;
 	private FilterResult fr = null;
 	private boolean openDiag;
+	private Table table;
 	/**
 	 * Open the window.
 	 */
@@ -37,7 +39,7 @@ public class TicketListWindow {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		ticketmanage.setList(shlTicketwatcher);
+		//ticketmanage.setList(shlTicketwatcher);
 		shlTicketwatcher.open();
 		shlTicketwatcher.layout();
 		while (!shlTicketwatcher.isDisposed()) {
@@ -66,13 +68,13 @@ public class TicketListWindow {
 		filterItem.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent e){
-				ticketmanage.refreash();
+				ticketmanage.refresh();
 				if(!openDiag){
 					openDiag = true;
-					FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups());
+					FilterDialog fd = new FilterDialog(shlTicketwatcher, SWT.NONE, ticketmanage.getOwners(), ticketmanage.getGroups(),ticketmanage.getFilterResult());
 					fr = (FilterResult) fd.open();
-					ticketmanage.newTickets(fr);
-					ticketmanage.updateListUI();
+					//ticketmanage.newTickets(fr);
+					//ticketmanage.updateListUI();
 					openDiag = false;
 				}
 			}
@@ -85,9 +87,9 @@ public class TicketListWindow {
 		Tree tree = new Tree(scrolledComposite, SWT.BORDER);
 		scrolledComposite.setContent(tree);
 		scrolledComposite.setMinSize(tree.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-		ticketmanage.setTree(tree);
-		ticketmanage.updateListUI();
-		ticketmanage.addTreeSelection();
+		//ticketmanage.setTree(tree);
+		//ticketmanage.updateListUI();
+		//ticketmanage.addTreeSelection();
 		
 		
 		
