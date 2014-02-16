@@ -75,20 +75,24 @@ public class TicketManager {
 			if (mFilterResult != null){
 				for (Ticket tk : allTickets){
 					boolean cleanTicket = true;
+					
+					String cleanGroup = Ticket.removeOutsideWhiteSpace(tk.getGroup());
 					if (mFilterResult.group != null && !mFilterResult.group.equals("")){
-						if (!tk.getGroup().equals(mFilterResult.group))
+						if (!cleanGroup.equals(mFilterResult.group))
 							cleanTicket = false;
 					}
+					String cleanPriority = Ticket.removeOutsideWhiteSpace(tk.getPriority());
 					if (mFilterResult.priority != null && !mFilterResult.priority.equals("")){
-						if (!tk.getPriority().equals(mFilterResult.priority))
+						if (!cleanPriority.equals(mFilterResult.priority))
 							cleanTicket = false;
 					}
 					if (mFilterResult.owner != null && !mFilterResult.owner.equals("")){
 						if (!tk.getOwner().equals(mFilterResult.owner))
 							cleanTicket = false;
 					}
+					String cleanStatus = Ticket.removeOutsideWhiteSpace(tk.getStatus());
 					if (mFilterResult.status != null && !mFilterResult.status.equals("")){
-						if (!tk.getStatus().equals(mFilterResult.status))
+						if (!cleanStatus.equals(mFilterResult.status))
 							cleanTicket = false;
 					}
 					if(cleanTicket)
@@ -98,42 +102,12 @@ public class TicketManager {
 			tickets = filteredTickets;
 		}
 	}
-	/**
-	public void addTreeSelection(){
-		//Selection Listeners
-		t.addSelectionListener(new SelectionAdapter(){
-			@Override
-			public void widgetSelected(SelectionEvent e){
-				TreeItem ti = (TreeItem) e.item;
-				if (!e.widget.isDisposed()){
-					if (ti.getData(""+Ticket.INDEX_CUSTOMER) != null || ti.getData(""+Ticket.INDEX_ACCOUNT) != null){
-						Object test1 = ti.getData();
-						Object test2 = ti.getParent();
-						Ticket ticket = (Ticket) ti.getData("ticket");
-						String customerNumber = ticket.getCustomer();
-						String accountNumber = ticket.getAccount();
-						System.out.println("cust: " + customerNumber + " account: " + accountNumber);
-						openCloudAccount(Integer.parseInt(customerNumber), Integer.parseInt(accountNumber));
-					}
-					if(ti.getData("ticket")!=null){
-						if (tw==null || tw.isDisposed()){
-							tw = new TicketDetailWindow(ticketListWindow);
-							tw.open();
-							
-						}
-						if (tw!=null && !tw.isDisposed())
-							tw.createNewTab((Ticket) ti.getData("ticket"));
-					
-					}
-			}
-			}
-		});
-	}
-	**/
-	private void openCloudAccount(int customerNumber, int accountNumber){
+	@SuppressWarnings("unused")
+	public void openCloudAccount(Ticket ticket){
 		try {
-			System.out.println(customerNumber);
-			Process openCloud = new ProcessBuilder("N:\\Cloud.exe","-aid", "" + customerNumber).start();
+			String account = Ticket.removeAllWhiteSpace(ticket.getAccount()).substring(0, 5).replaceAll("[^\\d.]", "");
+			String customer = Ticket.removeAllWhiteSpace(ticket.getCustomer()).substring(0, 5).replaceAll("[^\\d.]", "");
+			Process openCloud = new ProcessBuilder("N:\\Cloud.exe","-cid", "" + customer,"-aid",account).start();
 			
 		} catch (IOException e) {
 			System.out.println(e.toString());

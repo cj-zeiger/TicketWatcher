@@ -20,7 +20,7 @@ public class Ticket extends Object{
 		public final static int INDEX_OWNER = 8;
 		public final static int INDEX_GROUP = 9;
 		public final static int INDEX_ESCALATIONTIME = 10;
-		private final String whitespace_chars =  ""       /* dummy empty string for homogeneity */
+		private static final String whitespace_chars =  ""       /* dummy empty string for homogeneity */
                 + "\\u0009" // CHARACTER TABULATION
                 + "\\u000A" // LINE FEED (LF)
                 + "\\u000B" // LINE TABULATION
@@ -48,7 +48,7 @@ public class Ticket extends Object{
                 + "\\u205F" // MEDIUM MATHEMATICAL SPACE
                 + "\\u3000" // IDEOGRAPHIC SPACE
                 ;        
-				private final String     whitespace_charclass = "["  + whitespace_chars + "]";    
+				private final static String     whitespace_charclass = "["  + whitespace_chars + "]";    
 
 		
 	//Constructor
@@ -57,7 +57,7 @@ public class Ticket extends Object{
 	//Sets
 	public void setAll(int index, String pString){
 		switch (index){
-		case INDEX_TICKETNUMBER: setTicketNumber(ws(pString));
+		case INDEX_TICKETNUMBER: setTicketNumber(removeAllWhiteSpace(pString));
 		break;
 		case INDEX_STATUS: setStatus(pString);
 		break;
@@ -197,10 +197,22 @@ public class Ticket extends Object{
 		
 		return formatedInfo;
 	}
-	public String ws(String s){
+	public static final String removeAllWhiteSpace(String s){
 		s = s.replaceAll(whitespace_charclass+"+$","");
 		s = s.replaceAll("^"+whitespace_charclass+"+","");
 		return s;
+	}
+	public static final String removeOutsideWhiteSpace(String s){
+		
+		String first = s.substring(0, 1);
+		String last = s.substring(s.length()-1,s.length());
+		first = first.replaceAll(whitespace_charclass+"+$","");
+		first = first.replaceAll("^"+whitespace_charclass+"+","");
+		last = last.replaceAll(whitespace_charclass+"+$","");
+		last = last.replaceAll("^"+whitespace_charclass+"+","");
+		
+		String middle = s.substring(1,s.length()-1);
+		return first+middle+last;
 	}
 	
 }
