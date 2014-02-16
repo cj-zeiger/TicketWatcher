@@ -1,6 +1,10 @@
 package com.zygr.ticketWatcher;
 
+import java.awt.event.MouseAdapter;
+
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.browser.Browser;
 import org.eclipse.swt.SWT;
@@ -13,7 +17,7 @@ import org.eclipse.swt.graphics.Point;
 public class TicketDetailWindow {
 
 	protected Shell shell;
-	protected TabFolder tabFolder;
+	protected CTabFolder tabFolder;
 	private Shell listWindow;
 	
 	
@@ -45,21 +49,20 @@ public class TicketDetailWindow {
 		shell.setText("Ticket Viewer");
 		shell.setLocation(new Point(210,0));
 		
-		tabFolder = new TabFolder(shell, SWT.NONE);
+		tabFolder = new CTabFolder(shell, SWT.NONE);
 		tabFolder.setBounds(10, 10, shell.getClientArea().width - 20, shell.getClientArea().height - 20);
 		
 
 	}
 	public void createNewTab(Ticket t){
 		if (tabFolder != null){
-		TabItem ti = new TabItem(tabFolder, SWT.NONE);
+		CTabItem ti = new CTabItem(tabFolder, SWT.NONE);
 		ti.setText(t.getTicketNumber());
-		//ti.addListener(SWT.);
-		
 		Browser browser = new Browser(tabFolder, SWT.NONE);
 		ti.setControl(browser);
-		//browser.setUrl("https://www.google.com/#q=" + t.getTicketNumber() + "&safe=off");
 		browser.setUrl("http://tickets/tickets/viewticket.asp?id=" + t.getTicketNumber().replaceAll("[a-zA-Z]+", ""));
+		
+		
 		}
 	}
 	public boolean isDisposed(){
