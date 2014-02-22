@@ -162,9 +162,10 @@ public class FilterDialog extends Dialog {
 		btnReset.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent t){
-				fr = new FilterResult("","","","");
-				composite.dispose();
-				shlFilter.dispose();
+				cowner.setText("");
+				cpriority.setText("");
+				cgroup.setText("");
+				cstatus.setText("");
 			}
 		});
 		
