@@ -77,8 +77,9 @@ public class TicketManager {
 					boolean cleanTicket = true;
 					
 					String cleanGroup = Ticket.removeOutsideWhiteSpace(tk.getGroup());
-					if (mFilterResult.group != null && !mFilterResult.group.equals("")){
-						if (!cleanGroup.equals(mFilterResult.group))
+					String cleanFilterGroup = Ticket.removeOutsideWhiteSpace(mFilterResult.group);
+					if (cleanFilterGroup != null && !cleanFilterGroup.equals("")){
+						if (!cleanGroup.equals(cleanFilterGroup))
 							cleanTicket = false;
 					}
 					String cleanPriority = Ticket.removeOutsideWhiteSpace(tk.getPriority());

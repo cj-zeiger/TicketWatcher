@@ -24,16 +24,18 @@ public class TicketDetailWindow {
 	protected TabFolder tabFolder;
 	private Shell listWindow;
 	private Ticket iniTicket;
-	private TabItem rightClickedTableItem;
+	private TabItem rightClickedTabItem;
 	private TicketManager mTm;
 	private int height;
 	private int widht;
+	private TicketListTable mListTable;
 	
 	
-	public TicketDetailWindow(Shell lw, Ticket initial, TicketManager tm){
+	public TicketDetailWindow(Shell lw, Ticket initial, TicketManager tm, TicketListTable lt){
 		listWindow = lw;
 		iniTicket = initial;
 		mTm = tm;
+		mListTable = lt;
 	}
 	/**
 	 * @wbp.parser.entryPoint
@@ -69,11 +71,10 @@ public class TicketDetailWindow {
 		tabFolder.addMouseListener(new MouseListener(){
 			public void mouseDown(MouseEvent e){
 				if(e.button==3){
-					rightClickedTableItem = tabFolder.getItem(new Point(e.x,e.y));
+					rightClickedTabItem = tabFolder.getItem(new Point(e.x,e.y));
 				}
 				if(e.button==2){
-					Browser b = (Browser) tabFolder.getItem(new Point(e.x,e.y)).getControl();
-					b.refresh();
+					closeTab(tabFolder.getItem(new Point(e.x,e.y)));
 				}
 			}
 			@Override
@@ -92,7 +93,7 @@ public class TicketDetailWindow {
 		close.setText("Close");
 		close.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e){
-				rightClickedTableItem.dispose();				
+				closeTab(rightClickedTabItem);
 			}
 		});
 		
@@ -100,7 +101,7 @@ public class TicketDetailWindow {
 		refresh.setText("Refresh");
 		refresh.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e){
-				Browser b = (Browser) rightClickedTableItem.getControl();
+				Browser b = (Browser) rightClickedTabItem.getControl();
 				b.refresh();
 			}
 		});
@@ -109,14 +110,11 @@ public class TicketDetailWindow {
 		openCloud.setText("Open Cloud Account");
 		openCloud.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e){
-				Ticket selectedTicket = (Ticket) rightClickedTableItem.getData();
+				Ticket selectedTicket = (Ticket) rightClickedTabItem.getData();
 				mTm.openCloudAccount(selectedTicket);
 			}
 		});
-		
 		tabFolder.setMenu(rightMenu);
-		
-
 	}
 	public void createNewTab(Ticket t){
 		if (isInteractable() && newTicket(t)){
@@ -136,18 +134,27 @@ public class TicketDetailWindow {
 				
 				
 			});
+			tabFolder.setSelection(ti);
 		}
 	}
 	private boolean newTicket(Ticket t){
 		String ticketNumber = t.getTicketNumber();
 		TabItem[] tabItems = tabFolder.getItems();
 		for (TabItem item: tabItems){
-			if(item.getText() == ticketNumber){
+			if(item.getText().equals(ticketNumber)){
 				tabFolder.setSelection(item);
 				return false;
 			}
 		}
 		return true;
+	}
+	private void closeTab(TabItem t){
+		if (t!=null&&!t.isDisposed()){
+			t.dispose();
+			mTm.refresh();
+			mTm.refreshFilteredTickets();
+			mListTable.refreshUi();
+		}
 	}
 	public boolean isInteractable(){
 		if(shell!=null)

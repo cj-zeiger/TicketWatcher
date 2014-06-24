@@ -203,16 +203,19 @@ public class Ticket extends Object{
 		return s;
 	}
 	public static final String removeOutsideWhiteSpace(String s){
-		
-		String first = s.substring(0, 1);
-		String last = s.substring(s.length()-1,s.length());
-		first = first.replaceAll(whitespace_charclass+"+$","");
-		first = first.replaceAll("^"+whitespace_charclass+"+","");
-		last = last.replaceAll(whitespace_charclass+"+$","");
-		last = last.replaceAll("^"+whitespace_charclass+"+","");
-		
-		String middle = s.substring(1,s.length()-1);
-		return first+middle+last;
+		if (!s.equals("")){
+			String first = s.substring(0, 1);
+			String last = s.substring(s.length()-1,s.length());
+			first = first.replaceAll(whitespace_charclass+"+$","");
+			first = first.replaceAll("^"+whitespace_charclass+"+","");
+			last = last.replaceAll(whitespace_charclass+"+$","");
+			last = last.replaceAll("^"+whitespace_charclass+"+","");
+			
+			String middle = s.substring(1,s.length()-1);
+			return first+middle+last;
+		} else {
+			return s;
+		}
 	}
 	
 }

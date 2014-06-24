@@ -25,6 +25,7 @@ public class TicketListTable {
 	private FilterResult mFr;
 	private boolean openDiag = false;
 	private TicketDetailWindow detailWindow;
+	private TicketListTable mListTable = this;
 	
 	public TicketListTable(TicketManager tm){
 		mTm = tm;
@@ -72,7 +73,7 @@ public class TicketListTable {
 				TableItem[] items = table.getSelection();
 				if(items.length > 0){
 					if(detailWindow == null || !detailWindow.isInteractable()){
-						detailWindow = new TicketDetailWindow(mShell,(Ticket)items[0].getData(),mTm);
+						detailWindow = new TicketDetailWindow(mShell,(Ticket)items[0].getData(),mTm, mListTable);
 						detailWindow.open();
 					} else{
 						detailWindow.createNewTab((Ticket)items[0].getData());
@@ -114,6 +115,10 @@ public class TicketListTable {
 		});
 		
 		
+	}
+	public void refreshUi(){
+		if(!mShell.isDisposed()&&!table.isDisposed())
+			populateTickets();
 	}
 	private void populateTickets(){
 		if(!mShell.isDisposed()){
