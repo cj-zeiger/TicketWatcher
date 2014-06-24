@@ -44,7 +44,6 @@ public class TicketDetailWindow {
 		widht = display.getClientArea().width;
 		createContents();
 		shell.open();
-		shell.layout();
 		createNewTab(iniTicket);
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
@@ -63,6 +62,7 @@ public class TicketDetailWindow {
 		shell.setSize(parent.getSize().x,height - parent.getSize().y-30);
 		shell.setText("Ticket Viewer");
 		shell.setLocation(new Point(0,parent.getSize().y));
+		
 		
 		tabFolder = new TabFolder(shell, SWT.NONE);
 		tabFolder.setBounds(10, 10, shell.getClientArea().width - 20, shell.getClientArea().height - 20);
