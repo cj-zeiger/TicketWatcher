@@ -16,7 +16,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
-public class TicketListTable {
+public class TicketListTable implements TicketUpdateListener {
 	
 	protected Shell mShell;
 	private Table table;
@@ -33,6 +33,7 @@ public class TicketListTable {
 	 */
 	public TicketListTable(TicketManager tm){
 		mTm = tm;
+		tm.registerTicketUpdateListener(this);
 		
 	}
 	/**
@@ -104,7 +105,7 @@ public class TicketListTable {
 		filterItem.setText("Filter");
 		filterItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e){
-				mTm.refresh();
+				mTm.refreshTickets();
 				if(!openDiag){
 					openDiag = true;
 					FilterDialog fd = new FilterDialog(mShell, SWT.NONE, mTm.getOwners(), mTm.getGroups(),mTm.getFilterResult());
@@ -114,7 +115,7 @@ public class TicketListTable {
 					}
 					openDiag = false;
 				}
-				populateTickets();
+				mTm.refreshTickets();
 			}
 		});
 		
@@ -123,7 +124,7 @@ public class TicketListTable {
 		refreshItem.setText("Refresh");
 		refreshItem.addSelectionListener(new SelectionAdapter(){
 			public void widgetSelected(SelectionEvent e){
-				populateTickets();
+				mTm.refreshTickets();
 			}
 		});
 		
@@ -138,18 +139,14 @@ public class TicketListTable {
 			populateTickets();
 	}
 	/**
-	 * Fist loads and filters tickets via TicketManager's refreshFilteredTickets()
-	 * method. Then remoted all childrent from table UI object. Then creates new 
+	 * Removes all children from table UI object. Then creates new 
 	 * TableItems to populate the UI table. Loads Ticket objects as Data for each
 	 * TableItem.
 	 */
 	private void populateTickets(){
 		if(!mShell.isDisposed()){
-			mTm.refreshFilteredTickets();
 			ArrayList<Ticket> tickets = mTm.getTickets();
-			
 			table.removeAll();
-			
 			for(Ticket eachTicket: tickets){
 				TableItem item = new TableItem(table,SWT.NONE);
 				item.setData(eachTicket);
@@ -161,5 +158,12 @@ public class TicketListTable {
 			
 			}
 		}
+	}
+	@Override
+	/**
+	 * Called by TicketManager whenever tickets are updated.
+	 */
+	public void ticketsUpdated(ArrayList<Ticket> Tickets) {
+		populateTickets();
 	}
 }

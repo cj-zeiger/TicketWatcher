@@ -17,44 +17,57 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class TicketManager {
-	private ArrayList<Ticket> tickets;
+	private ArrayList<Ticket> mTickets;
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
 	private FilterResult mFilterResult;
+	private ArrayList<TicketUpdateListener> ticketClients;
 	/**
-	 * TicketManager's contructor automatically loads tickets into its
+	 * TicketManager's Constructor automatically loads tickets into its
 	 * holder data member on construction.
 	 */
 	public TicketManager(){
-		tickets = loadData();
+		mTickets = loadData();
+		ticketClients = new ArrayList<TicketUpdateListener>();
 	}
 	/**
-	 * Saves given FilterResult into TicketManager's data memeber.
+	 * Saves given FilterResult into TicketManager's data member.
 	 * @param fr - FilterResult to save.
 	 */
 	public void setFilterResult(FilterResult fr){
 		mFilterResult = fr;
 	}
 	/**
-	 * Returns refrence to the ArrayList of Tickets that TicketManager 
-	 * stores in a data memeber.
+	 * Returns reference to the ArrayList of Tickets that TicketManager 
+	 * stores in a data member.
 	 * @return - ArrayList of Tickets stored.
 	 */
 	public ArrayList<Ticket> getTickets(){
-		return tickets;
+		return mTickets;
 	}
-	
+	/**
+	 * Complete Synchronization of Tickets. Loads new Ticket from webpage, filters them if available,
+	 * sets data member to the updated list. 
+	 * Also notifies TicketUpdateListener clients of the refresh.
+	 */
+	public void refreshTickets(){
+		mTickets = filterTickets(loadData());
+		for(TicketUpdateListener client: ticketClients){
+			client.ticketsUpdated(mTickets);
+		}
+	}
 	/**
 	 * Attempts to connect to the Netcarrier Ticket webpage and download
-	 * HTML Data. It then passes the Element Object conatining the HTML text
+	 * HTML Data. It then passes the Element Object containing the HTML text
 	 * to parse the data into an ArrayList of newly created Ticket Objects.
+	 * 
 	 * @return ArrayList of Tickets generated.
 	 */
-	public ArrayList<Ticket> loadData() {
+	private ArrayList<Ticket> loadData() {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try {
-			Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			//File input = new File("nctickets.html");
-			//Document webPage = Jsoup.parse(input, "UTF-8");
+			//Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			File input = new File("nctickets.html");
+			Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements allRows = webPage.select("tr");
 			ticketArray = findTicketsFromHTML(allRows);
 		} catch (IOException e) {
@@ -65,17 +78,17 @@ public class TicketManager {
 	}
 	/**
 	 * Takes an Element Object and attempts to find all valid tickets 
-	 * by iterating over nested Elements and checking if all relavent fields
+	 * by iterating over nested Elements and checking if all relevant fields
 	 * are valid Strings. 
 	 *
 	 * This does not remove the buggy whitespace that the Strings on the webpage
 	 * adds to the end of various entries in the ticket table.
-	 * @param  allRows - Element Object containg HTML of entire Ticket page.
+	 * @param  allRows - Element Object containing HTML of entire Ticket page.
 	 * @return - ArrayList of created Tickets.
 	 */
 	
 	//TODO - Add better validation for correct tickets. Specifically remove the
-	//begining and trailing whitespace on tickets here.
+	//Beginning and trailing whitespace on tickets here.
 	private ArrayList<Ticket> findTicketsFromHTML(Elements allRows){
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		for (Element singleRow: allRows){
@@ -101,18 +114,15 @@ public class TicketManager {
 	
 	//Loads new tickets from web source, checks if there are filter results available and filters, finally sets object tickst to the result.
 	/**
-	 * First loads new tickets from the ticket webpage
-	 * Then Creates a new empty ArrayList of tickets to store the filtered tickets.
-	 * Iterates over the tickets and add ones that pass the fitler to the new
-	 * ArrayList. Finally set the data memeber of TicketManager that holds all
-	 * current tickets to the newly filtered list of Tickets.
+	 * Creates a new empty ArrayList of tickets to store the filtered tickets.
+	 * Iterates over passed ticket list and add ones that pass the filter to the new
+	 * ArrayList. Finally returns filtered list of tickets.
 	 */
-	public void refreshFilteredTickets(){
+	private ArrayList<Ticket> filterTickets(ArrayList<Ticket> tickets){
 		if(mFilterResult!=null){
-			ArrayList<Ticket> allTickets = loadData();
 			ArrayList<Ticket> filteredTickets = new ArrayList<Ticket>();
 			if (mFilterResult != null){
-				for (Ticket tk : allTickets){
+				for (Ticket tk : tickets){
 					boolean cleanTicket = true;
 					
 					String cleanGroup = Ticket.removeOutsideWhiteSpace(tk.getGroup());
@@ -139,7 +149,9 @@ public class TicketManager {
 						filteredTickets.add(tk);
 				}
 			}
-			tickets = filteredTickets;
+			return filteredTickets;
+		} else {
+			return tickets;
 		}
 	}
 	@SuppressWarnings("unused")
@@ -166,7 +178,7 @@ public class TicketManager {
 	 */
 	public ArrayList<String> getOwners(){
 		ArrayList<String> names = new ArrayList<String>();
-		for (Ticket ticket: tickets){
+		for (Ticket ticket: mTickets){
 			boolean unique = true;
 			String name = ticket.getOwner();
 			for (int x = 0; x < names.size(); x++){
@@ -186,7 +198,7 @@ public class TicketManager {
 	 */
 	public ArrayList<String> getGroups(){
 		ArrayList<String> groups = new ArrayList<String>();
-		for (Ticket ticket: tickets){
+		for (Ticket ticket: mTickets){
 			boolean unique = true;
 			String name = ticket.getGroup();
 			for (int x = 0; x < groups.size(); x++){
@@ -200,17 +212,13 @@ public class TicketManager {
 		return groups;
 	}
 	/**
-	 * Loads new tickets from ticket webpage and set the data member to the
-	 * newly created list.
-	 */
-	public void refresh(){
-		tickets = loadData();
-	}
-	/**
 	 * @return - The FilterResult currently in use.
 	 */
 	public FilterResult getFilterResult(){
 		return mFilterResult;
+	}
+	public void registerTicketUpdateListener(TicketUpdateListener client) {
+		ticketClients.add(client);
 	}
 	
 }

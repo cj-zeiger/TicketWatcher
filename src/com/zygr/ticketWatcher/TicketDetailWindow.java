@@ -34,8 +34,8 @@ public class TicketDetailWindow {
 	 * Sets Data Members.
 	 * @param  lw - Shell of the TicketListTable that created this detail
 	 * window.
-	 * @param  initial - Ticket assoicated with the event that created the
-	 * need for the detial window.
+	 * @param  initial - Ticket associated with the event that created the
+	 * need for the detail window.
 	 * @param  tm - Global TicketManager associated with this instance of 
 	 * TicketWatcher.
 	 * @param  lt - TicketListTable Object itself.
@@ -129,7 +129,7 @@ public class TicketDetailWindow {
 	}
 	/**
 	 * First verifies the state of the this detail window and checks to
-	 * make sure that a tab for thsi ticket is not already open.
+	 * make sure that a tab for this ticket is not already open.
 	 * Then creates a new TabItem and sets up said Object.
 	 * @param t - Ticket tab is created for.
 	 */
@@ -159,8 +159,8 @@ public class TicketDetailWindow {
 	 */
 	private void checkForLastTabClose(){
 		if(tabFolder.getItemCount()==1){
-						shell.dispose();
-					}
+			shell.dispose();
+		}
 	}
 	/**
 	 * Checks to make sure a tab for the provided ticket doesn't already
@@ -187,13 +187,11 @@ public class TicketDetailWindow {
 	private void closeTab(TabItem t){
 		if (t!=null&&!t.isDisposed()){
 			t.dispose();
-			mTm.refresh();
-			mTm.refreshFilteredTickets();
-			mListTable.refreshUi();
+			mTm.refreshTickets();
 		}
 	}
 	/**
-	 * Check to make sure the detail window is interactable.
+	 * Check to make sure the detail window is intractable.
 	 * @return - Result of the check.
 	 */
 	public boolean isInteractable(){
