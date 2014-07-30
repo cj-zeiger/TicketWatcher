@@ -20,18 +20,35 @@ public class TicketManager {
 	private ArrayList<Ticket> tickets;
 	private static final String URL_NETCARRIER_TICKET = "http://tickets/tickets/view.asp";
 	private FilterResult mFilterResult;
+	/**
+	 * TicketManager's contructor automatically loads tickets into its
+	 * holder data member on construction.
+	 */
 	public TicketManager(){
 		tickets = loadData();
 	}
-	
+	/**
+	 * Saves given FilterResult into TicketManager's data memeber.
+	 * @param fr - FilterResult to save.
+	 */
 	public void setFilterResult(FilterResult fr){
 		mFilterResult = fr;
 	}
+	/**
+	 * Returns refrence to the ArrayList of Tickets that TicketManager 
+	 * stores in a data memeber.
+	 * @return - ArrayList of Tickets stored.
+	 */
 	public ArrayList<Ticket> getTickets(){
 		return tickets;
 	}
 	
-	// call this to get a list of tickets
+	/**
+	 * Attempts to connect to the Netcarrier Ticket webpage and download
+	 * HTML Data. It then passes the Element Object conatining the HTML text
+	 * to parse the data into an ArrayList of newly created Ticket Objects.
+	 * @return ArrayList of Tickets generated.
+	 */
 	public ArrayList<Ticket> loadData() {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try {
@@ -46,6 +63,19 @@ public class TicketManager {
 		return ticketArray;
 		
 	}
+	/**
+	 * Takes an Element Object and attempts to find all valid tickets 
+	 * by iterating over nested Elements and checking if all relavent fields
+	 * are valid Strings. 
+	 *
+	 * This does not remove the buggy whitespace that the Strings on the webpage
+	 * adds to the end of various entries in the ticket table.
+	 * @param  allRows - Element Object containg HTML of entire Ticket page.
+	 * @return - ArrayList of created Tickets.
+	 */
+	
+	//TODO - Add better validation for correct tickets. Specifically remove the
+	//begining and trailing whitespace on tickets here.
 	private ArrayList<Ticket> findTicketsFromHTML(Elements allRows){
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		for (Element singleRow: allRows){
@@ -70,6 +100,13 @@ public class TicketManager {
 	}
 	
 	//Loads new tickets from web source, checks if there are filter results available and filters, finally sets object tickst to the result.
+	/**
+	 * First loads new tickets from the ticket webpage
+	 * Then Creates a new empty ArrayList of tickets to store the filtered tickets.
+	 * Iterates over the tickets and add ones that pass the fitler to the new
+	 * ArrayList. Finally set the data memeber of TicketManager that holds all
+	 * current tickets to the newly filtered list of Tickets.
+	 */
 	public void refreshFilteredTickets(){
 		if(mFilterResult!=null){
 			ArrayList<Ticket> allTickets = loadData();
@@ -106,6 +143,11 @@ public class TicketManager {
 		}
 	}
 	@SuppressWarnings("unused")
+	/**
+	 * Attempts to start an instance of Could.exe with the provided ticket.
+	 * Pulls the Customer and Account ID from the provided Ticket.
+	 * @param ticket - Ticket to pull Customer and Account ID from.
+	 */
 	public void openCloudAccount(Ticket ticket){
 		try {
 			String account = Ticket.removeAllWhiteSpace(ticket.getAccount()).substring(0, 5).replaceAll("[^\\d.]", "");
@@ -117,6 +159,11 @@ public class TicketManager {
 		}
 		
 	}
+	/**
+	 * Returns an ArrayList that contains a Name of everyone that currently
+	 * holds a Ticket.
+	 * @return - List of names.
+	 */
 	public ArrayList<String> getOwners(){
 		ArrayList<String> names = new ArrayList<String>();
 		for (Ticket ticket: tickets){
@@ -132,6 +179,11 @@ public class TicketManager {
 		}
 		return names;
 	}
+	/**
+	 * Returns an ArrayList that contains a group name of 
+	 * every group that currently holds a Ticket.
+	 * @return - List of groups.
+	 */
 	public ArrayList<String> getGroups(){
 		ArrayList<String> groups = new ArrayList<String>();
 		for (Ticket ticket: tickets){
@@ -147,9 +199,16 @@ public class TicketManager {
 		}
 		return groups;
 	}
+	/**
+	 * Loads new tickets from ticket webpage and set the data member to the
+	 * newly created list.
+	 */
 	public void refresh(){
 		tickets = loadData();
 	}
+	/**
+	 * @return - The FilterResult currently in use.
+	 */
 	public FilterResult getFilterResult(){
 		return mFilterResult;
 	}

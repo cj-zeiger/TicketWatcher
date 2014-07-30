@@ -48,13 +48,14 @@ public class Ticket extends Object{
                 + "\\u205F" // MEDIUM MATHEMATICAL SPACE
                 + "\\u3000" // IDEOGRAPHIC SPACE
                 ;        
-				private final static String     whitespace_charclass = "["  + whitespace_chars + "]";    
-
-		
-	//Constructor
-	public Ticket(){
-	}
-	//Sets
+				private final static String     whitespace_charclass = "["  + 
+					whitespace_chars + "]";
+	/**
+	 * Setter method for each individual Ticket's data members.
+	 * @param index - The static Enumeration mapped to a specific
+	 * Ticket data memeber.
+	 * @param pString - String to set the data member to.
+	 */	
 	public void setAll(int index, String pString){
 		switch (index){
 		case INDEX_TICKETNUMBER: setTicketNumber(removeAllWhiteSpace(pString));
@@ -78,6 +79,12 @@ public class Ticket extends Object{
 		default:
 		}
 	}
+	/**
+	 * Retreive a String data memeber based on the given index.
+	 * @param  index - The static int tied to the requested data
+	 * member.	
+	 * @return The string held in this Ticket's data member.
+	 */
 	public String getAll(int index){
 		switch (index){
 		case 0: return getTicketNumber();
@@ -167,9 +174,19 @@ public class Ticket extends Object{
 	
 		return ticketEscalationTime;
 	}
+	/**
+	 * Returns the http URL of this ticket.
+	 * @return URL String.
+	 */
 	public String getUrl(){
 		return "http://tickets/tickets/viewticket.asp?id=" + ticketNumber.replaceAll("[^\\d.]", "");
 	}
+	/**
+	 * Returns a String Array of size 11 that holds each of this Ticket's
+	 * Data memebers. Tickets are Immutable, so this array object will never
+	 * be out of date.
+	 * @return - The String Array.
+	 */
 	public String[] info(){
 		String[] infoString = new String[11];
 		for (int x =0; x<11;x++){
@@ -180,7 +197,11 @@ public class Ticket extends Object{
 		return infoString;
 	}
 	
-	
+	/**
+	 * Returns a formated description block of this ticket as a String
+	 * for debugging purposes.
+	 * @return - The formatted, multiline String.
+	 */
 	public String formatText(){
 		
 		String formatedInfo = ("Ticket Number: " + ticketNumber+
@@ -197,11 +218,24 @@ public class Ticket extends Object{
 		
 		return formatedInfo;
 	}
+	/**
+	 * Static method that takes a string and removes any and all
+	 * white space anywhere in the string. Accounts for weird and
+	 * obscure whitespace charecters.
+	 * @param  s - Input String.
+	 * @return - New String containing no whtiespace.
+	 */
 	public static final String removeAllWhiteSpace(String s){
 		s = s.replaceAll(whitespace_charclass+"+$","");
 		s = s.replaceAll("^"+whitespace_charclass+"+","");
 		return s;
 	}
+	/**
+	 * Same as removeAllWhiteSpace() but only targest whitespace leading
+	 * and/or trailing the given String.
+	 * @param  s - String with whitespace.
+	 * @return - The new String without leading or trailing whitesapce.
+	 */
 	public static final String removeOutsideWhiteSpace(String s){
 		if (!s.equals("")){
 			String first = s.substring(0, 1);

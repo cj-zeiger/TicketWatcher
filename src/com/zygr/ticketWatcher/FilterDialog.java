@@ -34,9 +34,9 @@ public class FilterDialog extends Dialog {
 	
 	
 	/**
-	 * Create the dialog.
-	 * @param parent
-	 * @param style
+	 * Create the dialog. Populates Lists of possible filters.
+	 * @param parent - Parent Shell (The TicketListTable's Shell)
+	 * @param style - SWT Style int.
 	 */
 	public FilterDialog(Shell parent, int style, ArrayList<String> owners,  ArrayList<String> groups,FilterResult existingResult) {
 		super(parent, style);
@@ -65,7 +65,8 @@ public class FilterDialog extends Dialog {
 
 	/**
 	 * Open the dialog.
-	 * @return the result
+	 * @return The FilterResult Object based on selections. Object it passed
+	 * to caller which in this case is the TicketListTable.
 	 */
 	public Object open() {
 		createContents();
@@ -145,7 +146,7 @@ public class FilterDialog extends Dialog {
 			cpriority.setText(existingFilterResult.priority);
 			cgroup.setText(existingFilterResult.group);
 		}
-		
+		// Go Button
 		btnGo.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent t){
@@ -159,6 +160,7 @@ public class FilterDialog extends Dialog {
 				shlFilter.dispose();
 			}
 		});
+		// Reset Button.
 		btnReset.addSelectionListener(new SelectionAdapter(){
 			@Override
 			public void widgetSelected(SelectionEvent t){

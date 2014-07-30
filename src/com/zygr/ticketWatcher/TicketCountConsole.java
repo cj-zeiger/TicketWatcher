@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class TicketCountConsole {
 	private TicketManager _tm;
+	
 	public static void main(String[] args) {
 		new TicketCountConsole();
 	}
+	
 	public TicketCountConsole(){
 		_tm = new TicketManager();
 		ArrayList<String> owners = _tm.getOwners();

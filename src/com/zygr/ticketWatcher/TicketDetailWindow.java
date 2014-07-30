@@ -30,8 +30,19 @@ public class TicketDetailWindow {
 	private int widht;
 	private TicketListTable mListTable;
 	
-	
-	public TicketDetailWindow(Shell lw, Ticket initial, TicketManager tm, TicketListTable lt){
+	/**
+	 * Sets Data Members.
+	 * @param  lw - Shell of the TicketListTable that created this detail
+	 * window.
+	 * @param  initial - Ticket assoicated with the event that created the
+	 * need for the detial window.
+	 * @param  tm - Global TicketManager associated with this instance of 
+	 * TicketWatcher.
+	 * @param  lt - TicketListTable Object itself.
+	 * @return
+	 */
+	public TicketDetailWindow(Shell lw, Ticket initial, TicketManager tm,
+			TicketListTable lt){
 		listWindow = lw;
 		iniTicket = initial;
 		mTm = tm;
@@ -116,6 +127,12 @@ public class TicketDetailWindow {
 		});
 		tabFolder.setMenu(rightMenu);
 	}
+	/**
+	 * First verifies the state of the this detail window and checks to
+	 * make sure that a tab for thsi ticket is not already open.
+	 * Then creates a new TabItem and sets up said Object.
+	 * @param t - Ticket tab is created for.
+	 */
 	public void createNewTab(Ticket t){
 		if (isInteractable() && newTicket(t)){
 			TabItem ti = new TabItem(tabFolder, SWT.NONE);
@@ -127,9 +144,7 @@ public class TicketDetailWindow {
 			ti.addDisposeListener(new DisposeListener(){
 				@Override
 				public void widgetDisposed(DisposeEvent e) {
-					if(tabFolder.getItemCount()==1){
-						shell.dispose();
-					}
+					checkForLastTabClose();
 				}
 				
 				
@@ -137,6 +152,22 @@ public class TicketDetailWindow {
 			tabFolder.setSelection(ti);
 		}
 	}
+	
+	/**
+	 * Called when TabItems are destroyed. If said destruction brings
+	 * the tab count to 0, the entire detail window is disposed.
+	 */
+	private void checkForLastTabClose(){
+		if(tabFolder.getItemCount()==1){
+						shell.dispose();
+					}
+	}
+	/**
+	 * Checks to make sure a tab for the provided ticket doesn't already
+	 * exist.
+	 * @param  t  - Ticket to search for.
+	 * @return - Result of find. True if it is actually a new Ticket.
+	 */
 	private boolean newTicket(Ticket t){
 		String ticketNumber = t.getTicketNumber();
 		TabItem[] tabItems = tabFolder.getItems();
@@ -148,6 +179,11 @@ public class TicketDetailWindow {
 		}
 		return true;
 	}
+	/**
+	 * Disposes of passed TabItem, refreshes the UI, and updates the 
+	 * List of current Valid ticket from the the ticket webpage.
+	 * @param t - Tab Item to close.
+	 */
 	private void closeTab(TabItem t){
 		if (t!=null&&!t.isDisposed()){
 			t.dispose();
@@ -156,6 +192,10 @@ public class TicketDetailWindow {
 			mListTable.refreshUi();
 		}
 	}
+	/**
+	 * Check to make sure the detail window is interactable.
+	 * @return - Result of the check.
+	 */
 	public boolean isInteractable(){
 		if(shell!=null)
 			if (!shell.isDisposed()&&shell.isVisible())

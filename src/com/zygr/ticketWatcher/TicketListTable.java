@@ -27,10 +27,17 @@ public class TicketListTable {
 	private TicketDetailWindow detailWindow;
 	private TicketListTable mListTable = this;
 	
+	/**
+	 * Creates this UI element by accepting a already created TicketManager.
+	 * @param  tm - TicketManager associated with this instance of TicketWatcher.
+	 */
 	public TicketListTable(TicketManager tm){
 		mTm = tm;
 		
 	}
+	/**
+	 * Shows the main UI window.
+	 */
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
@@ -45,6 +52,9 @@ public class TicketListTable {
 		}
 		display.dispose();
 	}
+	/**
+	 * Creates child objects used to build the UI of this window.
+	 */
 	private void createContents(){
 		mShell = new Shell();
 		mShell.setText("TicketWatcher");
@@ -82,6 +92,9 @@ public class TicketListTable {
 			}
 		});
 	}
+	/**
+	 * Creates the objects for the top menu bar.
+	 */
 	private void createMenuBar(){
 		Menu menuBar = new Menu(mShell, SWT.BAR);
 		mShell.setMenuBar(menuBar);
@@ -116,10 +129,20 @@ public class TicketListTable {
 		
 		
 	}
+	/**
+	 * Checks to make sure shell is not disposed before pull most
+	 * current tickets and updating the UI accordingly.
+	 */
 	public void refreshUi(){
 		if(!mShell.isDisposed()&&!table.isDisposed())
 			populateTickets();
 	}
+	/**
+	 * Fist loads and filters tickets via TicketManager's refreshFilteredTickets()
+	 * method. Then remoted all childrent from table UI object. Then creates new 
+	 * TableItems to populate the UI table. Loads Ticket objects as Data for each
+	 * TableItem.
+	 */
 	private void populateTickets(){
 		if(!mShell.isDisposed()){
 			mTm.refreshFilteredTickets();
