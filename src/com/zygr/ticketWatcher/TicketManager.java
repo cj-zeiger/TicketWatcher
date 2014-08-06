@@ -65,9 +65,9 @@ public class TicketManager {
 	private ArrayList<Ticket> loadData() {
 		ArrayList<Ticket> ticketArray = new ArrayList<Ticket>();
 		try {
-			//Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
-			File input = new File("nctickets.html");
-			Document webPage = Jsoup.parse(input, "UTF-8");
+			Document webPage = Jsoup.connect(URL_NETCARRIER_TICKET).get();
+			//File input = new File("nctickets.html");
+			//Document webPage = Jsoup.parse(input, "UTF-8");
 			Elements allRows = webPage.select("tr");
 			ticketArray = findTicketsFromHTML(allRows);
 		} catch (IOException e) {
